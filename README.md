@@ -24,9 +24,11 @@ svn export https://github.com/TeamRossi/vpp_dev/trunk/scripts/
 git clone [URL]/vpp_dev.git
 ```
 
-2.a Source the env variable
+2.
 
-2.b Compile your project
+a) Source the env variable
+
+b) Compile your project
 ```
 cd [name] && make 
 ```
