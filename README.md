@@ -5,17 +5,20 @@ This repo contains:
 - the plugins developed to be integrated in vpp
 - The scripts we used to perform our experiments.
 
+
+## Before starting
+
+```bash
+svn export https://github.com/TeamRossi/vpp_dev/trunk/scripts --force /usr/local/etc/scripts
+```
+
+This will update the config scripts with the latest version. I also put an alias in the bashrc, command ```update-conf```.
+
+
 ---
 
 ## Environment
 Source the ```config.sh``` inside the scripts folder to load in your shell the env variables.
-
-### Cloning only a the scripts in your folder
-
-```bash
-cd $SOME-DIR
-svn export https://github.com/TeamRossi/vpp_dev/trunk/scripts/
-```
 
 ## TODO
 

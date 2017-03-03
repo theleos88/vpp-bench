@@ -4,6 +4,10 @@
 export LINCS=137.194.165.4
 export VPP=137.194.208.243
 
+# Aliases
+alias update-conf='svn export https://github.com/TeamRossi/vpp_dev/trunk/scripts --force /usr/local/etc/scripts'
+
+
 # Linecards
 export LC1P1=0000:0b:00.0
 export LC1P2=0000:0b:00.1
