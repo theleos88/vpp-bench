@@ -15,3 +15,10 @@ export NAMELC1P1="TenGigabitEthernetb/0/0"
 export NAMELC1P2="TenGigabitEthernetb/0/1"
 export NAMELC2P1="TenGigabitEthernet84/0/0"
 export NAMELC2P2="TenGigabitEthernet84/0/1"
+
+# MAC addresses
+# TODO
+
+# DPDK
+export RTE_SDK=/usr/local/src/dpdk-stable-16.11.1
+export RTE_TARGET=x86_64-native-linuxapp-gcc
