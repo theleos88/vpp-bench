@@ -26,6 +26,12 @@ export MACLC1P2="90:e2:ba:cb:f5:39"
 export MACLC2P1="90:e2:ba:cb:f5:44"
 export MACLC2P2="90:e2:ba:cb:f5:45"
 
+export DEVLC1P1="enp11s0f0"
+export DEVLC1P2="enp11s0f1"
+export DEVLC2P1="enp132s0f0"
+export DEVLC2P2="enp132s0f1"
+
+
 # DPDK
 export RTE_SDK=/usr/local/src/dpdk-stable-16.11.1
 export RTE_TARGET=x86_64-native-linuxapp-gcc
