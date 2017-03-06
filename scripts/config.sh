@@ -21,7 +21,10 @@ export NAMELC2P1="TenGigabitEthernet84/0/0"
 export NAMELC2P2="TenGigabitEthernet84/0/1"
 
 # MAC addresses
-# TODO
+export MACLC1P1="90:e2:ba:cb:f5:38"
+export MACLC1P2="90:e2:ba:cb:f5:39"
+export MACLC2P1="90:e2:ba:cb:f5:44"
+export MACLC2P2="90:e2:ba:cb:f5:45"
 
 # DPDK
 export RTE_SDK=/usr/local/src/dpdk-stable-16.11.1
