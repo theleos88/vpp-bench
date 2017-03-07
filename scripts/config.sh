@@ -2,11 +2,7 @@
 
 # Addresses
 export LINCS=137.194.165.4
-export VPP=137.194.208.243
-
-# Aliases
-alias update-conf='svn export https://github.com/TeamRossi/vpp_dev/trunk/scripts --force /usr/local/etc/scripts'
-
+export VPPSERVER=137.194.208.243
 
 # Linecards
 export LC1P1=0000:0b:00.0
@@ -31,7 +27,17 @@ export DEVLC1P2="enp11s0f1"
 export DEVLC2P1="enp132s0f0"
 export DEVLC2P2="enp132s0f1"
 
+# VPP
+export VPP_ROOT=/usr/local/src/vpp
 
 # DPDK
-export RTE_SDK=/usr/local/src/dpdk-stable-16.11.1
+export RTE_SDK=/usr/local/src/dpdk-17.02
+export RTE_PKTGEN=/usr/local/src/pktgen-dpdk-pktgen-3.1.2
 export RTE_TARGET=x86_64-native-linuxapp-gcc
+
+# Config
+export CONFIG_DIR=/usr/local/etc/scripts
+export PATH=$PATH:$CONFIG_DIR
+
+# Aliases
+alias update-conf='svn export https://github.com/TeamRossi/vpp_dev/trunk/scripts --force /usr/local/etc/scripts && source $CONFIG_DIR/config.sh'
