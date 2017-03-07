@@ -38,3 +38,9 @@ cd [name] && make
 
 3. Enjoy vpp
 
+
+## Experiments
+
+ - start-vpp-xconnect.sh
+
+Starting vpp in xconnect mode.
