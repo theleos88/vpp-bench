@@ -1,9 +1,16 @@
 #!/bin/bash
 
 if [[ $# -eq 0 ]] ; then
-    echo 'Usage:'
+    echo 'STARTING WITH DEFAULT PARAMETERS. For next Usage:'
     echo './start-vpp-xconnect <prefix> LCxPy LCwPz'
     echo 'Change x, y, w, and z to match your NIC requirements. Do not use $'
+    sleep 1
+
+    sudo $VPP_ROOT/build-root/build-vpp_debug-native/vpp/bin/vpp api-segment { prefix vpp gid vpp } dpdk { dev $LC2P1 dev $LC2P2 socket-mem 1024,1024 }
+    sudo $VPP_ROOT/build-root/install-vpp_debug-native/vpp/bin/vppctl -p vpp set int l2 xconnect $NAMELC2P2 $NAMELC2P1
+    sudo $VPP_ROOT/build-root/install-vpp_debug-native/vpp/bin/vppctl -p vpp set int state $NAMELC2P1 up
+    sudo $VPP_ROOT/build-root/install-vpp_debug-native/vpp/bin/vppctl -p vpp set int state $NAMELC2P2 up
+
     exit 1
 fi
 
