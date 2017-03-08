@@ -41,5 +41,5 @@ export PATH=$PATH:$CONFIG_DIR
 
 # Aliases
 alias update-conf="svn export https://github.com/TeamRossi/vpp_dev/trunk/scripts --force /usr/local/etc/scripts && source $CONFIG_DIR/config.sh"
-alias show-conf="cat config.sh"
+alias show-conf="cat $CONFIG_DIR/config.sh"
 alias list-scripts="ls $CONFIG_DIR"
