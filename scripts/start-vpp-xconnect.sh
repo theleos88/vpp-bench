@@ -7,6 +7,11 @@ if [[ $# -eq 0 ]] ; then
     exit 1
 fi
 
+if [[ $# -eq 4 ]] ; then
+    echo "DEBUG MODE"
+fi
+debug=$4
+
 var=$2
 pci1=${!var}
 
@@ -27,3 +32,9 @@ echo "Crossconnecting, $name2 -> $name1"
 sudo $VPP_ROOT/build-root/install-vpp_debug-native/vpp/bin/vppctl -p $1 set int l2 xconnect $name2 $name1
 sudo $VPP_ROOT/build-root/install-vpp_debug-native/vpp/bin/vppctl -p $1 set int state $name1 up
 sudo $VPP_ROOT/build-root/install-vpp_debug-native/vpp/bin/vppctl -p $1 set int state $name2 up
+
+if [ -n "$debug" ]; then
+    a=pidof vpp_main
+    gdb -p $a
+fi
+
