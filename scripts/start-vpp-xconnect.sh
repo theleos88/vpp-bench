@@ -34,7 +34,7 @@ sudo $VPP_ROOT/build-root/install-vpp_debug-native/vpp/bin/vppctl -p $1 set int 
 sudo $VPP_ROOT/build-root/install-vpp_debug-native/vpp/bin/vppctl -p $1 set int state $name2 up
 
 if [ -n "$debug" ]; then
-    a=pidof vpp_main
-    gdb -p $a
+    echo "Not working"
+    #sudo gdb -p `ps -ef | grep vpp_main | awk '{printf $2}'`
 fi
 
