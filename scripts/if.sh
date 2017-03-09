@@ -12,6 +12,6 @@ for i in `seq 1 2`; do
 		do a="DEVLC$i"; 
 		b="P$j"; 
 		c=$a$b; 
-		sudo ifconfig ${!c} $2;
+		sudo ifconfig ${!c} $1;
 	done; 
 done;
