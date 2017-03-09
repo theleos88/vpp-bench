@@ -39,9 +39,13 @@ export RTE_TARGET=x86_64-native-linuxapp-gcc
 export CONFIG_DIR=/usr/local/etc/scripts
 export PATH=$PATH:$CONFIG_DIR:$RTE_SDK/usertools
 export STARTUP_CONF=$VPP_ROOT/startup.conf
+export BINS="$VPP_ROOT/build-root/install-vpp-native/vpp/bin"
+export LIBS="$VPP_ROOT/build-root/install-vpp-native/vpp/lib64/vpp_plugins"
+export SFLAG="env PATH=$PATH:$BINS"
 
 # Aliases
 alias update-conf="svn export https://github.com/TeamRossi/vpp_dev/trunk/scripts --force /usr/local/etc/scripts && source $CONFIG_DIR/config.sh"
 alias show-conf="cat $CONFIG_DIR/config.sh"
 alias list-scripts="ls $CONFIG_DIR"
 alias dpdk-setup="$RTE_SDK/usertools/dpdk-setup.sh"
+alias vppctl="sudo $SFLAG vppctl"
