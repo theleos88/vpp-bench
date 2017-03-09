@@ -3,8 +3,11 @@
 
 echo "Preparing path"
 cd $VPP_ROOT
-export STARTUP_CONF=`pwd`/startup.conf
-sudo env PATH=$PATH:$VPP_ROOT/build-root/install-vpp-native/vpp/bin
+
+BINS= "$VPP_ROOT/build-root/install-vpp-native/vpp/bin"
+LIBS= "$VPP_ROOT/build-root/install-vpp-native/vpp/lib64/vpp_plugins"
+SFLAG = "env PATH=$PATH:$BINS"
+
 
 if [[ $# -eq 0 ]] ; then
     echo 'STARTING WITH DEFAULT PARAMETERS. For next Usage:'
@@ -12,11 +15,11 @@ if [[ $# -eq 0 ]] ; then
     echo 'Change x, y, w, and z to match your NIC requirements. Do not use $'
     sleep 1
 
-    make run-release
-    #sudo $VPP_ROOT/build-root/build-vpp-native/vpp/bin/vpp api-segment { prefix vpp gid vpp } dpdk { dev $LC2P1 dev $LC2P2 socket-mem 1024,1024 }
-    sudo $VPP_ROOT/build-root/install-vpp-native/vpp/bin/vppctl -p vpp set int l2 xconnect $NAMELC2P2 $NAMELC2P1
-    sudo $VPP_ROOT/build-root/install-vpp-native/vpp/bin/vppctl -p vpp set int state $NAMELC2P1 up
-    sudo $VPP_ROOT/build-root/install-vpp-native/vpp/bin/vppctl -p vpp set int state $NAMELC2P2 up
+    sudo $BINS/vpp api-segment { prefix vpp gid vpp } dpdk { dev $LC2P1 dev $LC2P2 socket-mem 1024,1024 } plugin_path $LIBS
+    sudo $SFLAG vppctl -p vpp set int l2 xconnect $NAMELC2P2 $NAMELC2P1
+    #sudo $VPP_ROOT/build-root/install-vpp-native/vpp/bin/vppctl -p vpp set int l2 xconnect $NAMELC2P2 $NAMELC2P1
+    #sudo $VPP_ROOT/build-root/install-vpp-native/vpp/bin/vppctl -p vpp set int state $NAMELC2P1 up
+    #sudo $VPP_ROOT/build-root/install-vpp-native/vpp/bin/vppctl -p vpp set int state $NAMELC2P2 up
 
     exit 1
 fi
