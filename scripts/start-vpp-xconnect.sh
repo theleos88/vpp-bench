@@ -4,9 +4,9 @@
 echo "Preparing path"
 cd $VPP_ROOT
 
-BINS= "$VPP_ROOT/build-root/install-vpp-native/vpp/bin"
-LIBS= "$VPP_ROOT/build-root/install-vpp-native/vpp/lib64/vpp_plugins"
-SFLAG = "env PATH=$PATH:$BINS"
+BINS="$VPP_ROOT/build-root/install-vpp-native/vpp/bin"
+LIBS="$VPP_ROOT/build-root/install-vpp-native/vpp/lib64/vpp_plugins"
+SFLAG="env PATH=$PATH:$BINS"
 
 
 if [[ $# -eq 0 ]] ; then
