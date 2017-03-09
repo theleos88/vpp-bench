@@ -17,9 +17,8 @@ if [[ $# -eq 0 ]] ; then
 
     sudo $BINS/vpp api-segment { prefix vpp gid vpp } dpdk { dev $LC2P1 dev $LC2P2 socket-mem 1024,1024 } plugin_path $LIBS
     sudo $SFLAG vppctl -p vpp set int l2 xconnect $NAMELC2P2 $NAMELC2P1
-    #sudo $VPP_ROOT/build-root/install-vpp-native/vpp/bin/vppctl -p vpp set int l2 xconnect $NAMELC2P2 $NAMELC2P1
-    #sudo $VPP_ROOT/build-root/install-vpp-native/vpp/bin/vppctl -p vpp set int state $NAMELC2P1 up
-    #sudo $VPP_ROOT/build-root/install-vpp-native/vpp/bin/vppctl -p vpp set int state $NAMELC2P2 up
+    sudo $SFLAG vppctl -p vpp set int state $NAMELC2P1 up
+    sudo $SFLAG vppctl -p vpp set int state $NAMELC2P2 up
 
     exit 1
 fi
@@ -42,14 +41,13 @@ var="NAME"$3
 name2=${!var}
 
 echo "Starting vpp, $pci1, $pci2, $name1, $name2"
-make run-release
-#sudo $VPP_ROOT/build-root/install-vpp-native/vpp/bin/vpp api-segment { prefix $1 gid vpp } dpdk { dev $pci1 dev $pci2 socket-mem 1024,1024 }
+sudo $BINS/vpp api-segment { prefix $1 gid vpp } dpdk { dev $pci1 dev $pci2 socket-mem 1024,1024 } plugin_path $LIBS
 sleep 2
 
 echo "Crossconnecting, $name2 -> $name1"
-sudo $VPP_ROOT/build-root/install-vpp-native/vpp/bin/vppctl -p $1 set int l2 xconnect $name2 $name1
-sudo $VPP_ROOT/build-root/install-vpp-native/vpp/bin/vppctl -p $1 set int state $name1 up
-sudo $VPP_ROOT/build-root/install-vpp-native/vpp/bin/vppctl -p $1 set int state $name2 up
+sudo $SFLAG vppctl -p $1 set int l2 xconnect $name2 $name1
+sudo $SFLAG vppctl -p $1 set int state $name1 up
+sudo $SFLAG vppctl -p $1 set int state $name2 up
 
 if [ -n "$debug" ]; then
     echo "Not working"
