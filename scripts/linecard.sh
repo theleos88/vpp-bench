@@ -13,6 +13,10 @@ if [[ $# -eq 0 ]] ; then
 	sudo $SFLAG vppctl -p vpp set ip arp static $NAMELC2P1 $IPLC1P1 $MACLC1P1
 	#vppctl -p vpp set ip arp static $NAMELC2P2 $IPLC2P2
 
+	sudo $SFLAG vppctl -p vpp set interface $NAMELC2P1 state up
+	sudo $SFLAG vppctl -p vpp set interface $NAMELC2P2 state up
+
+
     exit 1
 fi
 echo "Configuring Linecards for IP mode"
