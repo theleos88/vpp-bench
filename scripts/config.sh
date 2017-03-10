@@ -23,6 +23,12 @@ export DEVLC1P2="enp11s0f1"
 export DEVLC2P1="enp132s0f0"
 export DEVLC2P2="enp132s0f1"
 
+# IP addresses
+export IPLC1P1="1.1.1.11"
+export IPLC1P2="1.1.1.12"
+export IPLC2P1="1.1.1.21"
+export IPLC2P2="1.1.1.22"
+
 # VPP
 export VPP_ROOT=/usr/local/src/vpp
 
