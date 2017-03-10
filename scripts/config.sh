@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Addresses
-export LINCS=137.194.165.4
-export VPPSERVER=137.194.208.243
-
 # Linecards
 export LC1P1=0000:0b:00.0
 export LC1P2=0000:0b:00.1
@@ -40,7 +36,7 @@ export CONFIG_DIR=/usr/local/etc/scripts
 export PATH=$PATH:$CONFIG_DIR:$RTE_SDK/usertools
 export STARTUP_CONF=$VPP_ROOT/startup.conf
 export BINS="$VPP_ROOT/build-root/install-vpp-native/vpp/bin"
-export LIBS="$VPP_ROOT/build-root/install-vpp-native/vpp/lib64/vpp_plugins"
+export PLUGS="$VPP_ROOT/build-root/install-vpp-native/vpp/lib64/vpp_plugins"
 export SFLAG="env PATH=$PATH:$BINS"
 
 # Aliases

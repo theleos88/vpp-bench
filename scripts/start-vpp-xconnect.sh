@@ -5,17 +5,20 @@ echo "Preparing path"
 cd $VPP_ROOT
 
 BINS="$VPP_ROOT/build-root/install-vpp-native/vpp/bin"
-LIBS="$VPP_ROOT/build-root/install-vpp-native/vpp/lib64/vpp_plugins"
+PLUGS="$VPP_ROOT/build-root/install-vpp-native/vpp/lib64/vpp_plugins"
 SFLAG="env PATH=$PATH:$BINS"
 
+echo "VPP_ROOT in : $VPP_ROOT"
+echo "Binairies in : $BINS"
+echo "Plugins in : $PLUGS"
 
 if [[ $# -eq 0 ]] ; then
-    echo 'STARTING WITH DEFAULT PARAMETERS. For next Usage:'
+    echo 'STARTING WITH DEFAULT PARAMETERS (name=vpp; LC2P2->LC2P1). For next Usage:'
     echo './start-vpp-xconnect <prefix> LCxPy LCwPz'
     echo 'Change x, y, w, and z to match your NIC requirements. Do not use $'
     sleep 1
 
-    sudo $BINS/vpp api-segment { prefix vpp gid vpp } dpdk { dev $LC2P1 dev $LC2P2 socket-mem 1024,1024 } plugin_path $LIBS
+    sudo $BINS/vpp api-segment { prefix vpp gid vpp } dpdk { dev $LC2P1 dev $LC2P2 socket-mem 1024,1024 } plugin_path $PLUGS
     sudo $SFLAG vppctl -p vpp set int l2 xconnect $NAMELC2P2 $NAMELC2P1
     sudo $SFLAG vppctl -p vpp set int state $NAMELC2P1 up
     sudo $SFLAG vppctl -p vpp set int state $NAMELC2P2 up
@@ -41,7 +44,7 @@ var="NAME"$3
 name2=${!var}
 
 echo "Starting vpp, $pci1, $pci2, $name1, $name2"
-sudo $BINS/vpp api-segment { prefix $1 gid vpp } dpdk { dev $pci1 dev $pci2 socket-mem 1024,1024 } plugin_path $LIBS
+sudo $BINS/vpp `cat $STARTUP_CONF` plugin_path $PLUGS
 sleep 2
 
 echo "Crossconnecting, $name2 -> $name1"
