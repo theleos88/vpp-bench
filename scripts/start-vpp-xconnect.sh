@@ -43,6 +43,11 @@ name1=${!var}
 var="NAME"$3
 name2=${!var}
 
+a=`awk '{for (i=1;i<=NF;i++) if ($i=="prefix") print $(i+1)}' $STARTUP_CONF`
+if [[ $a -ne $1 ]] ; then
+	echo "Warning, name mismatch. Provided: $1; STARTUP_CONF: $a"
+fi
+
 echo "Starting vpp, $pci1, $pci2, $name1, $name2"
 sudo $BINS/vpp `cat $STARTUP_CONF` plugin_path $PLUGS
 sleep 2
