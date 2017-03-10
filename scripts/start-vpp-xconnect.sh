@@ -47,7 +47,7 @@ echo ""
 echo ""
 
 a=`awk '{for (i=1;i<=NF;i++) if ($i=="prefix") print $(i+1)}' $STARTUP_CONF`
-if [ "$a" -ne "$1" ] ; then
+if [ "$a" != "$1" ] ; then
 	echo "Warning, name mismatch. Provided: $1; STARTUP_CONF: $a"
 fi
 
