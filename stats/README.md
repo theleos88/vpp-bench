@@ -1,9 +1,6 @@
 # Stats
 
-This module represents a basic mechanism for gathering statistics in two points:
-
-- after pkt-input
-- before pkt-output
+This directory contains the raw data of the VPP experiments.
 
 ## Components
 
