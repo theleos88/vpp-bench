@@ -1,4 +1,4 @@
-vpp_dev
+vpp-bench
 ===
 
 This repo contains:
