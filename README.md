@@ -9,7 +9,7 @@ This repo contains:
 ## Before starting
 
 ```bash
-svn export https://github.com/TeamRossi/vpp_dev/trunk/scripts --force /usr/local/etc/scripts
+svn export https://github.com/theleos88/vpp-bench/trunk/scripts --force /usr/local/etc/scripts
 ```
 
 This will update the config scripts with the latest version. I also put an alias in the bashrc, command ```update-conf```.
