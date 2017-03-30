@@ -15,6 +15,8 @@ svn export https://github.com/theleos88/vpp-bench/trunk/scripts --force /usr/loc
 This will update the config scripts with the latest version. I also put an alias in the bashrc, command ```update-conf```.
 
 
+*NOTE: vpp-bench is a fork of the repository github.com/TeamRossi/vpp-bench. Pull requests may be issued to update the configuration to the most recent one*.
+
 ---
 
 ## Environment
