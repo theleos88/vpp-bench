@@ -22,6 +22,22 @@ This will update the config scripts with the latest version. I also put an alias
 ## Environment
 Source the ```config.sh``` inside the scripts folder to load in your shell the env variables.
 
+---
+
+## Conventions
+
+Scripts are organized following a specific convention:
+**tool-name**_**script_name**
+
+For example:
+
+```bash
+vpp_change-frame-size.sh
+```
+Where:
+**Tool name**: vpp
+**Script name**: change-frame-size.sh
+
 ## TODO
 
 1. Clone the repository to your main vpp source directory
