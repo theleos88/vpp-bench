@@ -6,14 +6,14 @@ if [[ $# -eq 0 ]] ; then
     echo 'linecard.sh [list of linecards to set]'
 
     #Setting IP
-	sudo $SFLAG vppctl -p vpp set int ip address $NAMELC2P1 $IPLC2P1/24
-	sudo $SFLAG vppctl -p vpp set int ip address $NAMELC2P2 $IPLC2P2/24
+	sudo $SFLAG vppctl -p vpp set int ip address $NAMELC1P0 $IPLC1P0/24
+	sudo $SFLAG vppctl -p vpp set int ip address $NAMELC1P1 $IPLC1P1/24
 
 	# Setting ARPs
-	sudo $SFLAG vppctl -p vpp set ip arp static $NAMELC2P1 $IPLC1P1 $MACLC1P1
+	sudo $SFLAG vppctl -p vpp set ip arp static $NAMELC1P0 $IPLC0P0 $MACLC0P0
 
-	sudo $SFLAG vppctl -p vpp set interface state $NAMELC2P1 up
-	sudo $SFLAG vppctl -p vpp set interface state $NAMELC2P2 up
+	sudo $SFLAG vppctl -p vpp set interface state $NAMELC1P0 up
+	sudo $SFLAG vppctl -p vpp set interface state $NAMELC1P1 up
 
     exit 1
 fi
