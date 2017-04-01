@@ -17,7 +17,6 @@ This will update the config scripts with the latest version. I also put an alias
 
 *NOTE: vpp-bench is a fork of the repository github.com/TeamRossi/vpp-bench. Pull requests may be issued to update the configuration to the most recent one*.
 
----
 
 ## Environment
 Source the ```config.sh``` inside the scripts folder to load in your shell the env variables.
@@ -27,7 +26,8 @@ Source the ```config.sh``` inside the scripts folder to load in your shell the e
 ## Conventions
 
 Scripts are organized following a specific convention:
-**tool-name**_**script_name**
+
+**[tool name]**_**[script name]**
 
 For example:
 
@@ -35,8 +35,16 @@ For example:
 vpp_change-frame-size.sh
 ```
 Where:
-**Tool name**: vpp
-**Script name**: change-frame-size.sh
+
+- **Tool name**: vpp
+- **Script name**: change-frame-size.sh
+
+There are currently 4 sets of tools:
+
+- vpp
+- dpdk
+- test
+- datasets
 
 ## TODO
 
