@@ -46,7 +46,8 @@ export PLUGS="$VPP_ROOT/build-root/install-vpp-native/vpp/lib64/vpp_plugins"
 export SFLAG="env PATH=$PATH:$BINS"
 
 # Aliases
-alias update-conf="svn export https://github.com/theleos88/vpp-bench/trunk/scripts --force /usr/local/etc/scripts && source $CONFIG_DIR/config.sh"
+alias force-update-conf="svn export https://github.com/theleos88/vpp-bench/trunk/scripts --force $CONFIG_DIR && source $CONFIG_DIR/config.sh"
+alias update-conf="source $CONFIG_DIR/config.sh"
 alias show-conf="cat $CONFIG_DIR/config.sh"
 alias list-scripts="ls -l $CONFIG_DIR/*.sh"
 alias dpdk-setup="$RTE_SDK/usertools/dpdk-setup.sh"

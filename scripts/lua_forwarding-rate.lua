@@ -89,7 +89,7 @@ rate=0
 
 for i,v in pairs(SIZES) do
     for j,k in pairs(CONFIG) do
-        printf("CONFIG: ", k);
+        printf("CONFIG: %s ", k);
 
     	pktgen.set("1","size",v);
         pktgen.set_ipaddr("1", "dst", "1.1.1.11");
