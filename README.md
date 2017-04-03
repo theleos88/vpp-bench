@@ -8,6 +8,9 @@ This repo contains:
 
 ## Before starting
 
+By default, we locate scripts in ```/usr/local/etc/scripts```.
+If git is not available, or if you just want the scripts directory, export with this command:
+
 ```bash
 svn export https://github.com/theleos88/vpp-bench/trunk/scripts --force /usr/local/etc/scripts
 ```
@@ -20,6 +23,15 @@ This will update the config scripts with the latest version. I also put an alias
 
 ## Environment
 Source the ```config.sh``` inside the scripts folder to load in your shell the env variables.
+
+## Requirements
+Some of the scripts require additional tools or write permission to specific locations:
+
+- write access to ```/tmp/```
+- write access to ```$VPP_ROT``` (see ```config.sh```)
+- python in ```$PATH```
+- ```/usr/local/etc/scripts``` in ```$PATH```
+
 
 ---
 
