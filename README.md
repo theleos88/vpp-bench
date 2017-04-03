@@ -9,7 +9,7 @@ This repo contains:
 
 ## Before starting
 
-By default, we locate scripts in ```/usr/local/etc/scripts```.
+By default, we locate scripts in ```/usr/local/etc/scripts```. This is exported to an environment variable, named ```$CONFIG_DIR```.
 If git is not available, or if you just want the scripts directory, export with this command:
 
 ```bash
