@@ -2,8 +2,9 @@ vpp-bench
 ===
 
 This repo contains:
-- the plugins developed to be integrated in vpp
-- The scripts we used to perform our experiments.
+- the plugins developed (to be integrated in VPP)
+- the scripts we used to perform the experiments described in the technical report
+  available at https://newnet.telecom-paristech.fr/index.php/vpp-bench/
 
 
 ## Before starting
