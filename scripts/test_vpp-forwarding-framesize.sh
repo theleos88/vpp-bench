@@ -7,7 +7,8 @@ PERM_LOG=$VPP_ROOT/permlog.dat
 ###################################################
 # Change here the default vector sizes or the experiments
 declare -ia 'framesizes=(512 128 1024 64 4 256)'
-declare -a 'txtype=("xc" "ip" "l2")'
+declare -a 'txtype=("xc" "ip")'
+#declare -a 'txtype=("xc" "ip" "l2")'
 ###################################################
 
 echo "Results:" > $RESULT_FILE  # Initializing Result file
