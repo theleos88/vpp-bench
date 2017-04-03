@@ -28,10 +28,10 @@ Source the ```config.sh``` inside the scripts folder to load in your shell the e
 Some of the scripts require additional tools or write permission to specific locations:
 
 - write access to ```/tmp/```
-- write access to ```$VPP_ROT``` (see ```config.sh```)
+- write access to ```$VPP_ROOT``` (see ```config.sh```)
 - python in ```$PATH```
 - ```/usr/local/etc/scripts``` in ```$PATH```
-
+- Sudo without password (or, in alternative, run as root)
 
 ---
 
@@ -51,10 +51,11 @@ Where:
 - **Tool name**: vpp
 - **Script name**: change-frame-size.sh
 
-There are currently 4 sets of tools:
+There are currently 5 sets of tools:
 
 - vpp
 - dpdk
+- lua
 - test
 - datasets
 

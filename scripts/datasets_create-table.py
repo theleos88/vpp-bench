@@ -67,9 +67,9 @@ def usage():
     print "L2: sequential mac addresses, starting from 11:22:33:44:55:66"
     print "L3: coverage of the 32 bit IP space with prefixes"
     print ""
-    print "Usage: ./"+__file__, "<number-ip-prefixes | number-mac-addresses <mac>>"
-    print "Example ip: ./"+__file__," 200000 > /tmp/iptable.dat"
-    print "Example mac: ./"+__file__," 1250 mac > /tmp/mactable.dat"
+    print "Usage: python",__file__, "<number-ip-prefixes | number-mac-addresses <mac>>"
+    print "Example ip: python",__file__," 200000 > /tmp/iptable.dat"
+    print "Example mac: python",__file__," 1250 mac > /tmp/mactable.dat"
     print "\n\n"
 
 if __name__ == "__main__":

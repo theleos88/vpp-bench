@@ -13,12 +13,12 @@ usage (){
     echo 'Usage:'
     echo "./$script <number>"
     echo ''
-    exit 1	
+    exit 1
 }
 
 # Check if at least one argument
 if [[ $# -eq 0 ]] ; then
-	usage 
+	usage
 fi
 
 # Check if not a number
