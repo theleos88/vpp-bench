@@ -13,14 +13,15 @@ By default, we locate scripts in ```/usr/local/etc/scripts```. This is exported 
 If git is not available, or if you just want the scripts directory, export with this command:
 
 ```bash
-svn export https://github.com/theleos88/vpp-bench/trunk/scripts --force /usr/local/etc/scripts
+svn export https://github.com/theleos88/vpp-bench/trunk/scripts --force $CONFIG_DIR
 ```
 
-This will update the config scripts with the latest version. I also put an alias in the bashrc, command ```update-conf```.
+This will update the config scripts with the latest version. I also put an alias in the bashrc, command ```update-conf``` and ```force-update-conf```.
 
+- After any change in your **local** CONFIG_DIR, run the update-conf.
+- To come back to the **remote** version, run the force-update-conf. (It will remove local changes to files. It keeps the local files not staged in git).
 
-*NOTE: vpp-bench is a fork of the repository github.com/TeamRossi/vpp-bench. Pull requests may be issued to update the configuration to the most recent one*.
-
+*NOTE: vpp-bench was a fork of the repository github.com/TeamRossi/vpp-bench, which is now deprecated.*
 
 ## Environment
 Source the ```config.sh``` inside the scripts folder to load in your shell the env variables.
@@ -63,24 +64,26 @@ There are currently 5 sets of tools:
 ## TODO
 
 1. Clone the repository to your main vpp source directory
-``` 
+```
 git clone [URL]/vpp_dev.git
 ```
 
-2.
+2.a) Source the env variable
 
-a) Source the env variable
-
-b) Compile your project
+2.b) Compile your project
 ```
 cd [name] && make 
 ```
 
-3. Enjoy vpp
+3. Run one of the scripts.
 
+4. Enjoy vpp.
+
+-----------------------------------------
 
 ## Experiments
 
- - start-vpp-xconnect.sh
+#### test_vpp-forwarding-framesize.sh
 
-Starting vpp in xconnect mode.
+Performs the test to compute the VPP's forwarding rate as a function of the vector size.
+By default, runs for XC or IP forwarding, and with static, roundrobin and uniform mode.
