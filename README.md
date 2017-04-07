@@ -32,7 +32,7 @@ Some of the scripts require additional tools or write permission to specific loc
 - write access to ```/tmp/```
 - write access to ```$VPP_ROOT``` (see ```config.sh```)
 - python in ```$PATH```
-- ```/usr/local/etc/scripts``` in ```$PATH```
+- ```$CONFIG_DIR``` in ```$PATH```
 - Sudo without password (or, in alternative, run as root)
 
 ---
