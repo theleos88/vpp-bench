@@ -25,7 +25,7 @@ fi
 
 echo "" > /tmp/commands
 for i in `cat $TABLE`; do
-   echo "ip route add $i via $IPLC0P0" >> /tmp/commands
+   echo "ip route add $i via $IPLC1P0" >> /tmp/commands
 done
 
 sudo $SFLAG vppctl -p vpp exec /tmp/commands

@@ -13,15 +13,15 @@ echo "Binairies in : $BINS"
 echo "Plugins in : $PLUGS"
 
 if [[ $# -eq 0 ]] ; then
-    echo 'STARTING WITH DEFAULT PARAMETERS (name=vpp; LC1P1->LC1P0). For next Usage:'
+    echo 'STARTING WITH DEFAULT PARAMETERS (name=vpp; LC0P1->LC0P0). For next Usage:'
     echo './start-vpp-xconnect <prefix> LCxPy LCwPz'
     echo 'Change x, y, w, and z to match your NIC requirements. Do not use $'
     sleep 1
 
-    sudo $BINS/vpp api-segment { prefix vpp gid vpp } dpdk { dev $LC1P0 dev $LC1P1 socket-mem 1024,1024 } plugin_path $PLUGS
-    sudo $SFLAG vppctl -p vpp set int l2 xconnect $NAMELC1P1 $NAMELC1P0
-    sudo $SFLAG vppctl -p vpp set int state $NAMELC1P0 up
-    sudo $SFLAG vppctl -p vpp set int state $NAMELC1P1 up
+    sudo $BINS/vpp api-segment { prefix vpp gid vpp } dpdk { dev $LC0P0 dev $LC0P1 socket-mem 2048,2048 } plugin_path $PLUGS
+    sudo $SFLAG vppctl -p vpp set int l2 xconnect $NAMELC0P1 $NAMELC0P0
+    sudo $SFLAG vppctl -p vpp set int state $NAMELC0P0 up
+    sudo $SFLAG vppctl -p vpp set int state $NAMELC0P1 up
 
     exit 1
 fi
