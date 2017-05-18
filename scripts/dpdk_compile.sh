@@ -8,5 +8,6 @@ if [ -z "$RTE_TARGET" ]; then
 	echo "Please, define RTE_TARGET";
 else
 	make config T=$RTE_TARGET
-	make T=$RTE_TARGET
+	#make T=$RTE_TARGET
+	make install T=$RTE_TARGET
 fi
