@@ -19,8 +19,8 @@ if [[ $# -eq 0 ]] ; then
 	sudo $SFLAG $BINS/vppctl -p vpp set int ip address $NAMELC1P0 $IPLC1P0/32
 
 
-	sudo $SFLAG $BINS/vppctl -p vpp set interface state $NAMELC1P0 up
-	sudo $SFLAG $BINS/vppctl -p vpp set interface state $NAMELC1P1 up
+	sudo $SFLAG $BINS/vppctl -p vpp set interface state $NAMELC0P0 up
+	sudo $SFLAG $BINS/vppctl -p vpp set interface state $NAMELC0P1 up
 
 
     exit 1
