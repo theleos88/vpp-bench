@@ -18,10 +18,12 @@ if [[ $# -eq 0 ]] ; then
     echo 'Change x, y, w, and z to match your NIC requirements. Do not use $'
     sleep 1
 
-    sudo $BINS/vpp api-segment { prefix vpp gid vpp } dpdk { dev $LC1P0 dev $LC1P1 socket-mem 1024,1024 } plugin_path $PLUGS
-    sudo $SFLAG vppctl -p vpp set int l2 xconnect $NAMELC1P1 $NAMELC1P0
-    sudo $SFLAG vppctl -p vpp set int state $NAMELC1P0 up
-    sudo $SFLAG vppctl -p vpp set int state $NAMELC1P1 up
+#    sudo $BINS/vpp api-segment { prefix vpp gid vpp } dpdk { dev $LC1P0 dev $LC1P1 socket-mem 1024,1024 } plugin_path $PLUGS
+    sudo $BINS/vpp `cat $STARTUP_CONF` plugin_path $PLUGS &
+    sleep 10
+    sudo $SFLAG $BINS/vppctl -p vpp set int l2 xconnect $NAMELC1P1 $NAMELC1P0
+    sudo $SFLAG $BINS/vppctl -p vpp set int state $NAMELC1P0 up
+    sudo $SFLAG $BINS/vppctl -p vpp set int state $NAMELC1P1 up
 
     exit 1
 fi
