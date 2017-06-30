@@ -1,0 +1,6 @@
+set mac 1 90:e2:ba:cb:f5:45
+set mac 0 90:e2:ba:cb:f5:44
+set ip src 1 2.13.0.1/32
+set ip src 0 2.13.4.1/32
+
+
