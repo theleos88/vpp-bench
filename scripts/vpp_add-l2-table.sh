@@ -12,6 +12,8 @@ usage (){
     echo ""
 }
 
+echo "WARNING: This script is currently deprecated"
+
 # Check if no parameter
 if [[ $# -ne 0 ]]; then
 	TABLE=$1

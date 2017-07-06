@@ -1,6 +1,7 @@
 #!/bin/bash
 
 TABLE=$CONFIG_DIR/table.dat 	#If no table is provided, this is the default
+PREFIX=`cat $STARTUP_CONF | grep prefix | awk '{print $2}' | xargs echo -n`
 
 # Display usage
 usage (){
@@ -28,5 +29,5 @@ for i in `cat $TABLE`; do
    echo "ip route add $i via $IPLC0P0" >> /tmp/commands$PPID
 done
 
-sudo $SFLAG $BINS/vppctl -p vpp exec /tmp/commands$PPID
+sudo $SFLAG $BINS/vppctl -p $PREFIX exec /tmp/commands$PPID
 #vppctl -p vpp exec /tmp/commands$PPID

@@ -7,10 +7,12 @@ cd $VPP_ROOT
 BINS="$VPP_ROOT/build-root/install-vpp-native/vpp/bin"
 PLUGS="$VPP_ROOT/build-root/install-vpp-native/vpp/lib64/vpp_plugins"
 SFLAG="env PATH=$PATH:$BINS"
+PREFIX=`cat $STARTUP_CONF | grep prefix | awk '{print $2}' | xargs echo -n`
 
 echo "VPP_ROOT in : $VPP_ROOT"
 echo "Binairies in : $BINS"
 echo "Plugins in : $PLUGS"
+echo "Prefix: $PREFIX"
 
 if [[ $# -eq 0 ]] ; then
     echo 'STARTING WITH DEFAULT PARAMETERS (name=vpp; LC0P1->LC0P0). For next Usage:'
@@ -21,9 +23,9 @@ if [[ $# -eq 0 ]] ; then
 #    sudo $BINS/vpp api-segment { prefix vpp gid vpp } dpdk { dev $LC1P0 dev $LC1P1 socket-mem 1024,1024 } plugin_path $PLUGS
     sudo $BINS/vpp `cat $STARTUP_CONF` plugin_path $PLUGS &
     sleep 10
-    sudo $SFLAG $BINS/vppctl -p vpp set int l2 xconnect $NAMELC1P1 $NAMELC1P0
-    sudo $SFLAG $BINS/vppctl -p vpp set int state $NAMELC1P0 up
-    sudo $SFLAG $BINS/vppctl -p vpp set int state $NAMELC1P1 up
+    sudo $SFLAG $BINS/vppctl -p $PREFIX set int l2 xconnect $NAMELC1P1 $NAMELC1P0
+    sudo $SFLAG $BINS/vppctl -p $PREFIX set int state $NAMELC1P0 up
+    sudo $SFLAG $BINS/vppctl -p $PREFIX set int state $NAMELC1P1 up
 
     exit 1
 fi
