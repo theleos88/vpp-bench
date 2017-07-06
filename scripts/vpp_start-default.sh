@@ -9,7 +9,7 @@ echo "Plugins in : $PLUGS"
 
 if [[ $# -eq 1 ]] ; then
     echo "Changing Prefix with: $1"
-	sed -i "s/^\(prefix \).*/\1$1/" $STARTUP_CONF
+	sed -i "s/^\(  prefix \).*/\1$1/" $STARTUP_CONF
 fi
 
 PREFIX=`cat $STARTUP_CONF | grep prefix | awk '{print $2}' | xargs echo -n`
