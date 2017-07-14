@@ -1,49 +1,20 @@
 #!/bin/bash
 
-RESULT_FILE=$VPP_ROOT/results.dat
-
-###################################################
-# Change here the default vector sizes or the experiments
-declare -ia 'framesizes=(512 128 1024 64 4 256)'
-declare -a 'txtype=("ip")'
-###################################################
-
-echo "Results:" > $RESULT_FILE  # Initializing Result file
-
-#Iterating over VLIB_FRAME_SIZE and for three experiments
 EXP=""
 
-for j in "${txtype[@]}"; do
+vpp_compile.sh
+vpp_start-default.sh vpp$RANDOM &
+sleep 15
+vpp_set-linecards-address.sh
 
-    for i in "${framesizes[@]}"; do
-        vpp_change-frame-size.sh $i
-        vpp_compile.sh
+# Add ip table here
 
-        if [ "$j" == "xc" ]; then
-            echo "Compiling with Frame size: $i, Xconnect";
-            EXP="XC"
-            vpp_start-xconnect.sh
+# NO NEED FOR SCREEN!
+dpdk_start-pktgen.sh $CONFIG_DIR/lua_vector-distribution.lua   #Start pktgen measuring forwarding rate
 
-        elif [ "$j" == "ip" ]; then
-            echo "Compiling with Frame size: $i, IP 128k";
-            EXP="IP-128k"
-            vpp_start-default.sh
-            vpp_set-linecards-address.sh
-            vpp_add-ip-table.sh
-
-        else
-            continue
-        fi
-
-        screen -L dpdk_start-pktgen.sh "forwarding"   #Start pktgen measuring forwarding rate
-        cat /tmp/data | awk -v vs="$EXP" -v fs="$i" '{print "Exp:",vs, "Vector-size:",fs, $0 }' >> $RESULT_FILE
-        cat $LOG_FILE >> $PERM_LOG
-
-        sudo killall vpp_main
-        sudo killall pktgen
-        sudo rm /dev/hugepages/*
-    done;
-done
+sudo killall vpp_main
+sudo killall pktgen
+sudo rm /dev/hugepages/*
 
 echo "*****************************************"
 echo "Done. Check result file at $RESULT_FILE"

@@ -46,11 +46,14 @@ export IPLC1P1="1.1.1.22"
 
 # VPP
 #export VPP_ROOT=/usr/local/src/vpp
-export VPP_ROOT=/home/leos/vpp
+export VPP_ROOT=/home/leos/vppdev/vpp
 
 # DPDK
-export RTE_SDK=/usr/local/src/dpdk-17.02
-export RTE_PKTGEN=/usr/local/src/pktgen-dpdk-pktgen-3.1.2
+#export RTE_SDK=/usr/local/src/dpdk-17.02
+#export RTE_PKTGEN=/usr/local/src/pktgen-dpdk-pktgen-3.1.2
+
+export RTE_SDK=/home/leos/dpdkdev/dpdk-17.02
+export RTE_PKTGEN=/home/leos/dpdkdev/pktgen-dpdk-pktgen-3.1.2
 export RTE_TARGET=x86_64-native-linuxapp-gcc
 
 # Config
