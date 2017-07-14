@@ -1,10 +1,19 @@
 vpp-bench
 ===
 
+Vector Packet Processor is an Linux Foundation (fd.io) project for high-speed packet processing.
+In line with the push toward research reproducibility, ```vpp-bench``` is a repository used to keep track of our research data about VPP and, more generally, high-speed software frameworks.
+
 This repo contains:
-- the plugins developed (to be integrated in VPP)
+
 - the scripts we used to perform the experiments described in the technical report
   available at https://newnet.telecom-paristech.fr/index.php/vpp-bench/
+- measurements and statistics from several experiments on VPP
+- a sample configuration file for VPP (```startup.conf```)
+
+Development code on VPP (at version 17.04) is regularly pushed to https://github.com/theleos88/vppdev
+
+DPDK code (SDK version 17.01, traffix generator version 3.1.2) is also maintained in https://github.com/theleos88/dpdkdev
 
 
 ## Before starting
@@ -61,6 +70,8 @@ There are currently 5 sets of tools:
 - test
 - datasets
 
+
+
 ## TODO
 
 1. Clone the repository to your main vpp source directory
@@ -81,7 +92,7 @@ cd [name] && make
 
 -----------------------------------------
 
-## Experiments
+# Experiments
 
 #### test_vpp-forwarding-framesize.sh
 

@@ -16,34 +16,28 @@ def parse_data(itr, size):
     for i in range(0,size):
         int_str.append( next(itr) )
 
-    return bytearray(int_str)
+    d = b"".join(int_str)
+    return(int.from_bytes(d, byteorder='big', signed=False)  ) #For python3
 
 
 
+if __name__ == '__main__':
 
-with open('/tmp/neweventfile', 'rb') as f:
-    # memory-map the file, size 0 means whole file
-    mm = mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ)
+    with open('/tmp/neweventfile', 'rb') as f:
+        # memory-map the file, size 0 means whole file
+        mm = mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ)
 
-    print("Iterating")
+        itr = iter(mm)
+        for b in itr:
 
-    itr = iter(mm)
-    for b in itr:
-        print ( list(b), b)
-        input("Press Enter to continue...") # Just for Python3
-        if (b == b'\x6c'):
-            print ("WIIIIIIIIIIIIIIIIIIIIIIIIIN")
+            if (b == b'@'):
+                try:
+                    e= parse_data(itr, 3)   # Binary file dependent
+                    f= parse_data(itr, 4)   # First data
+                    g= parse_data(itr, 4)   # Second data
+                    h= parse_data(itr, 8)   # Timestamp
+                    print ("Id",e,"Vector",f,"Clock",g,"TS",h)
+                except:
+                    print ("")
 
-
-        if (  b == repr('@') ):
-            #print(b)
-            a= parse_data(itr, 3)
-            b= parse_data(itr, 4)
-            c= parse_data(itr, 4)
-
-#            print(int(a), int(b), int(c))
-            print(convert_int(a), convert_int(b), convert_int(c))
-#            raw_input("Press Enter to continue...") # Just for Python2, otherwise simple input
-
-
-    mm.close()
+        mm.close()
