@@ -25,9 +25,18 @@ if [ "$1" == "help" ] ; then
 fi
 
 echo "" > /tmp/commands$PPID
-for i in `cat $TABLE`; do
-   echo "ip route add $i via $IPLC0P0" >> /tmp/commands$PPID
-done
+source $CONFIG_DIR/config.sh
+
+if [ "$2" == "ip6" ] ; then
+    for i in `cat $TABLE`; do
+        echo "ip route add $i via $DEFAULTIP6" >> /tmp/commands$PPID
+    done
+else
+    for i in `cat $TABLE`; do
+        #echo "ip route add $i via $IPLC0P0" >> /tmp/commands$PPID
+        echo "ip route add $i via $DEFAULTIP" >> /tmp/commands$PPID
+    done
+fi
 
 sudo $SFLAG $BINS/vppctl -p $PREFIX exec /tmp/commands$PPID
 #vppctl -p vpp exec /tmp/commands$PPID

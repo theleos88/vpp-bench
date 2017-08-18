@@ -38,19 +38,33 @@ export MACLC0P1="90:e2:ba:cb:f5:39"
 export MACLC1P0="90:e2:ba:cb:f5:44"
 export MACLC1P1="90:e2:ba:cb:f5:45"
 
+export MACLOOP="90:e2:ba:cb:f5:46"
+
+
 # IP addresses
 export IPLC0P0="1.1.1.11"
 export IPLC0P1="1.1.1.12"
 export IPLC1P0="1.1.1.21"
 export IPLC1P1="1.1.1.22"
 
+# IP6 addresses
+export IP6LC1P0="2011:2::ffff"
+export IP6LC1P1="2011:3::ffff"
+
+export IPLOOP="10.0.0.0"
+export IP6LOOP="2011:1::ffff"
+
+# Default routes
+DEFAULTIP="99.99.99.99"
+DEFAULTIP6="2211:2::ffff"
+
 # VPP
 #export VPP_ROOT=/usr/local/src/vpp
-export VPP_ROOT=/home/leos/vpp
+export VPP_ROOT=/home/leos/vppdev/vpp
 
 # DPDK
-export RTE_SDK=/usr/local/src/dpdk-17.02
-export RTE_PKTGEN=/usr/local/src/pktgen-dpdk-pktgen-3.1.2
+export RTE_SDK=/home/leos/dpdkdev/dpdk-17.02
+export RTE_PKTGEN=/home/leos/dpdkdev/pktgen-dpdk-pktgen-3.1.2
 export RTE_TARGET=x86_64-native-linuxapp-gcc
 
 # Config
