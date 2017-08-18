@@ -92,6 +92,17 @@ cd [name] && make
 
 -----------------------------------------
 
+# Tips&Tricks for performance evaluation
+
+- Check NUMA nodes: each core should be assigned to the same NUMA node of the Line Card
+e.g. If core0 is located in NUMA #0 and LC1 is located in NUMA #0, then core0 can be assigned to LC1.
+
+```lstopo    # Check topology of numa nodes```
+```cat /sys/bus/pci/devices/[PCI ADDRESS]/numa_node```
+
+
+-----------------------------------------
+
 # Experiments
 
 #### test_vpp-forwarding-framesize.sh
