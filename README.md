@@ -15,8 +15,15 @@ Development code on VPP (at version 17.04) is regularly pushed to https://github
 
 DPDK code (SDK version 17.01, traffix generator version 3.1.2) is also maintained in https://github.com/theleos88/dpdkdev
 
+### Outline
 
-## Before starting
+* [Before starting](https://github.com/theleos88/vpp-bench#before-starting)
+* [Tips&Tricks](https://github.com/theleos88/vpp-bench#tipstricks-for-performance-evaluation) - Check common commands
+* [Experiments](https://github.com/theleos88/vpp-bench#experiments) - Description of experiments scripts
+
+------
+
+# 1. Before starting
 
 By default, we locate scripts in ```/usr/local/etc/scripts```. This is exported to an environment variable, named ```$CONFIG_DIR```.
 If git is not available, or if you just want the scripts directory, export with this command:
@@ -92,7 +99,7 @@ cd [name] && make
 
 -----------------------------------------
 
-# Tips&Tricks for performance evaluation
+# 2. Tips&Tricks for performance evaluation
 
 - Check NUMA nodes: each core should be assigned to the same NUMA node of the Line Card
 e.g. If core0 is located in NUMA #0 and LC1 is located in NUMA #0, then core0 can be assigned to LC1.
@@ -103,7 +110,7 @@ e.g. If core0 is located in NUMA #0 and LC1 is located in NUMA #0, then core0 ca
 
 -----------------------------------------
 
-# Experiments
+# 3. Experiments
 
 #### test_vpp-forwarding-framesize.sh
 
