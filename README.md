@@ -11,9 +11,10 @@ This repo contains:
 - measurements and statistics from several experiments on VPP
 - a sample configuration file for VPP (```startup.conf```)
 
-Development code on VPP (at version 17.04) is regularly pushed to https://github.com/theleos88/vppdev
 
-DPDK code (SDK version 17.01, traffix generator version 3.1.2) is also maintained in https://github.com/theleos88/dpdkdev
+This repository is meant to be used in conjunction with other github repos:
+- Development code on VPP (at version 17.04) is regularly pushed to https://github.com/theleos88/vppdev
+- DPDK code (SDK version 17.01, traffic generator version 3.1.2) is also maintained in https://github.com/theleos88/dpdkdev
 
 ### Outline
 
