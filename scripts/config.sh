@@ -69,6 +69,7 @@ export RTE_TARGET=x86_64-native-linuxapp-gcc
 
 # Config
 export CONFIG_DIR=/home/leos/vpp-bench/scripts
+export DATASETS=/home/leos/vpp-bench/datasets
 export PATH=$PATH:$CONFIG_DIR:$RTE_SDK/usertools
 export STARTUP_CONF=$VPP_ROOT/startup.conf
 export BINS="$VPP_ROOT/build-root/install-vpp-native/vpp/bin"
