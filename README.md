@@ -79,6 +79,11 @@ There are currently 5 sets of tools:
 - datasets
 
 
+The majority of the scripts are bash/shell scripts (e.g. *.sh).
+Python scripts are used mainly for dataset creation. 
+Lua files are used for traffic generation.
+Files with *.pkt extension are a sequence of DPDK pktgen commands, to be used for very simple experiments on packet generation.
+
 
 ## TODO
 
