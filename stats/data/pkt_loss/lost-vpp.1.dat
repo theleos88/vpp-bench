@@ -1,0 +1,104 @@
+TX RATE: 400
+TenGigabitEthernet84/0/0          1         up       tx packets               7757216
+TenGigabitEthernet84/0/1          2         up       rx packets               7757216
+
+
+TX RATE: 800
+TenGigabitEthernet84/0/0          1         up       tx packets              15513216
+TenGigabitEthernet84/0/1          2         up       rx packets              15513216
+
+
+TX RATE: 1200
+TenGigabitEthernet84/0/0          1         up       tx packets              23276160
+TenGigabitEthernet84/0/1          2         up       rx packets              23276160
+
+
+TX RATE: 1600
+TenGigabitEthernet84/0/0          1         up       tx packets              31028352
+TenGigabitEthernet84/0/1          2         up       rx packets              31028352
+
+
+TX RATE: 2000
+TenGigabitEthernet84/0/0          1         up       tx packets              38802336
+TenGigabitEthernet84/0/1          2         up       rx packets              38802336
+
+
+TX RATE: 2400
+TenGigabitEthernet84/0/0          1         up       tx packets              46534464
+TenGigabitEthernet84/0/1          2         up       rx packets              46534464
+
+
+TX RATE: 2800
+TenGigabitEthernet84/0/0          1         up       tx packets              54285088
+TenGigabitEthernet84/0/1          2         up       rx packets              54285088
+
+
+TX RATE: 3200
+TenGigabitEthernet84/0/0          1         up       tx packets              62031136
+TenGigabitEthernet84/0/1          2         up       rx packets              62031136
+
+
+TX RATE: 3600
+TenGigabitEthernet84/0/0          1         up       tx packets              69783616
+TenGigabitEthernet84/0/1          2         up       rx packets              69783616
+
+
+TX RATE: 4000
+TenGigabitEthernet84/0/0          1         up       tx packets              77593120
+TenGigabitEthernet84/0/1          2         up       rx packets              77593120
+
+
+TX RATE: 4400
+TenGigabitEthernet84/0/0          1         up       tx packets              85267488
+TenGigabitEthernet84/0/1          2         up       rx packets              85267488
+
+
+TX RATE: 4800
+TenGigabitEthernet84/0/0          1         up       tx packets              92999808
+TenGigabitEthernet84/0/1          2         up       rx packets              92999808
+
+
+TX RATE: 5200
+TenGigabitEthernet84/0/0          1         up       tx packets             100741056
+TenGigabitEthernet84/0/1          2         up       rx packets             100741056
+
+
+TX RATE: 5600
+TenGigabitEthernet84/0/0          1         up       tx packets             108536416
+TenGigabitEthernet84/0/1          2         up       rx packets             108536416
+
+
+TX RATE: 6000
+TenGigabitEthernet84/0/0          1         up       tx packets             116263200
+TenGigabitEthernet84/0/1          2         up       rx packets             116263200
+
+
+TX RATE: 6400
+TenGigabitEthernet84/0/0          1         up       tx packets             123961809
+TenGigabitEthernet84/0/1          2         up       rx packets             123961809
+                                                     rx-miss                      193
+
+
+TX RATE: 6800
+TenGigabitEthernet84/0/0          1         up       tx packets             131684263
+TenGigabitEthernet84/0/1          2         up       rx packets             131684263
+                                                     rx-miss                      206
+
+
+TX RATE: 7200
+TenGigabitEthernet84/0/0          1         up       tx packets             139410463
+TenGigabitEthernet84/0/1          2         up       rx packets             139410463
+                                                     rx-miss                     1756
+
+
+TX RATE: 7600
+TenGigabitEthernet84/0/0          1         up       tx packets             145876222
+TenGigabitEthernet84/0/1          2         up       rx packets             145876222
+                                                     rx-miss                  1323040
+
+
+TX RATE: 8000
+TenGigabitEthernet84/0/0          1         up       tx packets             145890954
+TenGigabitEthernet84/0/1          2         up       rx packets             145890954
+                                                     rx-miss                  6084627
+
