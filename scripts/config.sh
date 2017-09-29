@@ -40,6 +40,12 @@ export MACLC1P1="90:e2:ba:cb:f5:45"
 
 export MACLOOP="90:e2:ba:cb:f5:46"
 
+# Port numbers (For MoonGen)
+export IDLC0P0="0"
+export IDLC0P1="1"
+export IDLC1P0="2"
+export IDLC1P1="3"
+
 
 # IP addresses
 export IPLC0P0="1.1.1.11"
