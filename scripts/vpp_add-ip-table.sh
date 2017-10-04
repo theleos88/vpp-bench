@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TABLE=$CONFIG_DIR/table.dat 	#If no table is provided, this is the default
+TABLE=$DATASETS/table.dat 	#If no table is provided, this is the default
 PREFIX=`cat $STARTUP_CONF | grep prefix | awk '{print $2}' | xargs echo -n`
 
 # Display usage

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TABLE=$CONFIG_DIR/table.dat 	#If no table is provided, this is the default
+TABLE=$DATASETS/table.dat 	#If no table is provided, this is the default
 
 # Display usage
 usage (){
