@@ -107,11 +107,12 @@ cd [name] && make
 
 # 2. Tips&Tricks for performance evaluation
 
+It is important to check a set of requirements. This is described in details in the [wiki page](https://github.com/theleos88/vpp-bench/wiki).
+
 - Check NUMA nodes: each core should be assigned to the same NUMA node of the Line Card
 e.g. If core0 is located in NUMA #0 and LC1 is located in NUMA #0, then core0 can be assigned to LC1.
 
-```lstopo    # Check topology of numa nodes```
-```cat /sys/bus/pci/devices/[PCI ADDRESS]/numa_node```
+- No Turbo boost active: the turbo boost randomly increments the CPU frequency, but it decreases over time. So performance predictability gets lost.
 
 
 -----------------------------------------
