@@ -1,5 +1,5 @@
 
-do for [i=1:20] {
+do for [i=1:30] {
 	set term svg size 1300,600
 	set output 'clock_vs_vector'.i.'.svg'
 
