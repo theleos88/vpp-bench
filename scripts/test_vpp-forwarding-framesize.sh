@@ -4,9 +4,9 @@ RESULT_FILE=$VPP_ROOT/results_leonardo.dat
 
 ###################################################
 # Change here the default vector sizes or the experiments
-declare -ia 'framesizes=(512 128 1024 64 4 256)'
+declare -ia 'framesizes=(512 128 768 64 4 256)'
 #declare -ia 'framesizes=(256)'
-declare -a 'txtype=("ip")'
+declare -a 'txtype=("xc" "ip")'
 declare -ia 'txexp=(0 1)'   #0 = Turbo ; 1 = NO Turbo
 #declare -a 'txtype=("xc" "ip" "l2")'
 ###################################################
@@ -30,20 +30,20 @@ for h in "${txexp[@]}"; do
             if [ "$j" == "xc" ]; then
                 echo "Compiling with Frame size: $i, Xconnect";
                 EXP="XC"
-                vpp_start-xconnect.sh
+                vpp_start-xconnect.sh &
 
             elif [ "$j" == "ip" ]; then
                 echo "Compiling with Frame size: $i, IP 128k";
                 EXP="IP-128k"
                 vpp_start-default.sh &
-                sleep 10
+                sleep 20
                 vpp_set-linecards-address.sh
                 vpp_add-ip-table.sh
 
             elif [ "$j" == "l2" ]; then
                 echo "Compiling with Frame size: $i, L2 128k";
                 EXP="L2-128k"
-                vpp_start-default.sh
+                vpp_start-default.sh &
                 vpp_set-linecards-address.sh
                 vpp_add-l2-table.sh
 

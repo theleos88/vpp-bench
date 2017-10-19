@@ -49,7 +49,7 @@ if __name__ == '__main__':
                     e= parse_data(itr, 3)   # Binary file dependent
 ####################
                     f= parse_data(itr, 4)   # First data
-                    d1= parse_data(itr, 8)   # Drop data
+                    d1= parse_data(itr, 4)   # Drop data
                     #d2= parse_data(itr, 4)   # Drop data
                     #d3= parse_data(itr, 4)   # Drop data
 # MATCH HERE YOUR DATA!
@@ -58,7 +58,7 @@ if __name__ == '__main__':
 
                     #print ("Id:",e,"Vector:",f,"Clock:",g,"TS:",h)
                     #print ("Id:",e,"Vector:",f,"Clock:",g)
-                    print ("Vector: ", f, " Clocks: ", d1 )
+                    print ("Vector: ", f, " Count: ", d1 )
                 except:
                     print ("")
 
