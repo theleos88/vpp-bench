@@ -11,7 +11,7 @@ declare -ia 'txexp=(0 1)'   #0 = Turbo ; 1 = NO Turbo
 #declare -a 'txtype=("xc" "ip" "l2")'
 ###################################################
 
-echo "Results:" > $RESULT_FILE  # Initializing Result file
+echo "Results:" | sudo tee $RESULT_FILE  # Initializing Result file
 
 #Iterating over VLIB_FRAME_SIZE and for three experiments
 EXP=""
@@ -24,18 +24,19 @@ for h in "${txexp[@]}"; do
     for j in "${txtype[@]}"; do
 
         for i in "${framesizes[@]}"; do
-            vpp_change-frame-size.sh $i
-            vpp_compile.sh
+            #vpp_change-frame-size.sh $i
+            #vpp_compile.sh
 
             if [ "$j" == "xc" ]; then
                 echo "Compiling with Frame size: $i, Xconnect";
                 EXP="XC"
-                vpp_start-xconnect.sh &
+                vpp_start-xconnect.sh vpp$RANDOM &
+		sleep 15
 
             elif [ "$j" == "ip" ]; then
                 echo "Compiling with Frame size: $i, IP 128k";
                 EXP="IP-128k"
-                vpp_start-default.sh &
+                vpp_start-default.sh vpp$RANDOM &
                 sleep 20
                 vpp_set-linecards-address.sh
                 vpp_add-ip-table.sh
@@ -43,7 +44,7 @@ for h in "${txexp[@]}"; do
             elif [ "$j" == "l2" ]; then
                 echo "Compiling with Frame size: $i, L2 128k";
                 EXP="L2-128k"
-                vpp_start-default.sh &
+                vpp_start-default.sh vpp$RANDOM &
                 vpp_set-linecards-address.sh
                 vpp_add-l2-table.sh
 
@@ -51,9 +52,8 @@ for h in "${txexp[@]}"; do
                 continue
             fi
 
-            screen -L dpdk_start-pktgen.sh "forwarding"   #Start pktgen measuring forwarding rate
+            dpdk_start-pktgen.sh "forwarding"   #Start pktgen measuring forwarding rate
             cat /tmp/data | awk -v ts="$h" -v vs="$EXP" -v fs="$i" '{print "Exp:",vs, "Vector-size:",fs, "NoTurbo:",ts, $0 }' >> $RESULT_FILE
-            cat $LOG_FILE >> $PERM_LOG
 
             sudo killall vpp_main
             sudo killall pktgen

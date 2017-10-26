@@ -20,11 +20,10 @@ if [[ $# -eq 0 ]] ; then
 fi
 
 if [ "$1" == "forwarding" ]; then
-	sudo app/app/x86_64-native-linuxapp-gcc/pktgen -l 12,13-16 -n 1 -w $LC0P0 -w $LC0P1 -- -P -T -m "[13-14].0,[15-16].1" -f $PKTGEN_SCRIPT
+	sudo app/app/x86_64-native-linuxapp-gcc/pktgen -l 1,2-5 -n 1 -w $LC0P0 -w $LC0P1 -- -P -T -m "[2-3].0,[4-5].1" -f $PKTGEN_SCRIPT
 else
 	echo "Starting pktgen with a .pkt file"
 	######## NOT PATCHED! 03/04/2017, Leos ###########
     #F=`$CONFIG_DIR/dpdk_config-pktgen.sh $1`
 	sudo app/app/x86_64-native-linuxapp-gcc/pktgen -l 12,13-16 -n 1 -w $LC0P0 -w $LC0P1 -- -P -T -m "[13-14].0,[15-16].1" -f $1
 fi
-qq^H^C^C^C
