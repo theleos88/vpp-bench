@@ -80,13 +80,12 @@ export DATASETS=/home/leos/vpp-bench/datasets
 export PATH=$PATH:$CONFIG_DIR:$RTE_SDK/usertools:$VPP_ROOT/build-root/build-tool-native/tools
 export C_INCLUDE_PATH=$C_INCLUDE_PATH:$VPP_ROOT/build-root/install-vpp-native/vpp/include
 export STARTUP_CONF=$CONFIG_DIR/startup.conf
+export DPDK_CONF=$CONFIG_DIR/tgdpdk.conf
 export BINS="$VPP_ROOT/build-root/install-vpp-native/vpp/bin"
 export PLUGS="$VPP_ROOT/build-root/install-vpp-native/vpp/lib64/vpp_plugins"
 export SFLAG="env PATH=$PATH:$BINS"
 
 # Aliases
-alias force-update-conf="svn export https://github.com/theleos88/vpp-bench/trunk/scripts --force $CONFIG_DIR && source $CONFIG_DIR/config.sh"
-alias update-conf="source $CONFIG_DIR/config.sh"
 alias show-conf="cat $CONFIG_DIR/config.sh"
 alias list-scripts="ls -l $CONFIG_DIR/*.sh"
 alias dpdk-setup="$RTE_SDK/usertools/dpdk-setup.sh"
