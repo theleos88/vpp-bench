@@ -17,64 +17,14 @@ function printdata(averg, inp, outp, noloss, rate)
 end
 
 
-function configtraffic( choice )
-    if (choice == "static") then 
-        pktgen.delay(50);
-        pktgen.delay(50);
-
-    elseif (choice == "roundrobin") then
-        pktgen.dst_mac("1", "start", "90e2:bacb:f545");
-        pktgen.dst_mac("0", "start", "90e2:bacb:f544");
-
-        pktgen.delay(50);
-        pktgen.dst_ip("0", "start", "1.1.2.15");
-        pktgen.dst_ip("0", "inc", "0.0.0.1");
-        pktgen.dst_ip("0", "min", "1.1.2.15");
-        pktgen.dst_ip("0", "max", "1.1.2.222");
-
-        pktgen.delay(50);
-        pktgen.src_ip("0", "start", "2.13.0.1");
-        pktgen.src_ip("0", "inc", "0.0.0.1");
-        pktgen.src_ip("0", "min", "2.13.0.1");
-        pktgen.src_ip("0", "max", "2.13.0.64");
-        pktgen.delay(50);
-
-        -- printing range!!
-        pktgen.set_range("1", "on");
-        pktgen.set_range("0", "on");
-        
-    else
-        pktgen.dst_mac("1", "start", "90e2:bacb:f545");
-        pktgen.dst_mac("0", "start", "90e2:bacb:f544");
-
-        pktgen.delay(50);
-        pktgen.dst_ip("0", "start", "1.1.1.11");
-        pktgen.dst_ip("0", "inc", "3.2.1.11");
-        pktgen.dst_ip("0", "min", "1.1.1.11");
-        pktgen.dst_ip("0", "max", "220.233.199.99");
-
-        pktgen.delay(50);
-        pktgen.src_ip("0", "start", "1.13.0.1");
-        pktgen.src_ip("0", "inc", "0.0.0.13");
-        pktgen.src_ip("0", "min", "1.13.0.1");
-        pktgen.src_ip("0", "max", "11.13.0.64");
-        pktgen.delay(50);
-
-        -- printing range!!
-        pktgen.set_range("1", "on");
-        pktgen.set_range("0", "on");
-    end
-end
-
 --------------------------------------------------
 -- MODIFY CONFIGURATION HERE
-SIZES={64, 1500, 340}
-CONFIG= {"static", "roundrobin", "uniform"};
+--SIZES={64, 1500, 340}
+--CONFIG= {"static", "roundrobin", "uniform"};
+SIZES={64};
+CONFIG= {"static"};
 --------------------------------------------------
 
-LEFT=64;
-RIGHT=1500;
-PRECISION= 0.99;
 SLEEP=20000;     --Sleep here
 SECONDS=SLEEP/1000;
 
@@ -86,20 +36,22 @@ inputp=0
 noloss=0
 rate=0
 
+send_p=	"0"
+rx_p=	"1"
 
 for i,v in pairs(SIZES) do
     for j,k in pairs(CONFIG) do
         printf("CONFIG: %s ", k);
 
-    	pktgen.set("1","size",v);
-        pktgen.set_ipaddr("0", "dst", "1.1.1.11");
-        pktgen.set_ipaddr("0", "src", "1.1.1.12");
-        pktgen.set_mac("1", "90e2:bacb:f545");
-        pktgen.set_mac("0", "90e2:bacb:f544");
-        pktgen.set_ipaddr("1", "src", "1.1.1.12/24");
+    	pktgen.set(send_p,"size",v);
+        pktgen.set_ipaddr(send_p, "dst", "1.1.1.11");
+        pktgen.set_ipaddr(send_p, "src", "1.1.1.12");
+        pktgen.set_mac(send_p, "90e2:bacb:f545");
+
+        pktgen.set_mac(rx_p, "90e2:bacb:f544");
+        pktgen.set_ipaddr(rx_p, "src", "1.1.1.12/24");
 
         --pktgen.page("range");
-        configtraffic(k);
         pktgen.delay(50);
 
     	pktgen.start(0);
@@ -115,8 +67,8 @@ for i,v in pairs(SIZES) do
         --prints("portRates", pktgen.portStats("all", "rate"));
         --prints("pktgen.info", pktgen.info);
         --prints("portStats", pktgen.portStats("all", "port")[0]["ipackets"]);
-        outputp=(pktgen.portStats("all", "port")[0]["opackets"]);
-        inputp=(pktgen.portStats("all", "port")[1]["ipackets"]);
+        outputp=(pktgen.portStats("all", "port")[tonumber(send_p)]["opackets"]);
+        inputp=(pktgen.portStats("all", "port")[tonumber(rx_p)]["ipackets"]);
         noloss= 1-(outputp-inputp)/outputp;
         rate=inputp/SECONDS;
 

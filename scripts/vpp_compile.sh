@@ -4,4 +4,4 @@
 
 cd $VPP_ROOT
 #make wipe-release
-sudo make build-release
+make build-release
