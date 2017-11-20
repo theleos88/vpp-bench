@@ -56,6 +56,8 @@ export IPLC1P1="1.1.1.22"
 # IP6 addresses
 export IP6LC1P0="2011:2::ffff"
 export IP6LC1P1="2011:3::ffff"
+export IP6LC0P0="2010:2::ffff"
+export IP6LC0P1="2010:3::ffff"
 
 export IPLOOP="10.0.0.0"
 export IP6LOOP="2011:1::ffff"
