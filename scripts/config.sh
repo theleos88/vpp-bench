@@ -75,9 +75,14 @@ export RTE_SDK=/home/leos/dpdkdev/dpdk-17.02
 export RTE_PKTGEN=/home/leos/dpdkdev/pktgen-dpdk-pktgen-3.1.2
 export RTE_TARGET=x86_64-native-linuxapp-gcc
 
+# MoonGen
+export MOONDIR=/usr/local/src/MoonGen
+
 # Config
-export CONFIG_DIR=/home/leos/vpp-bench/scripts
-export DATASETS=/home/leos/vpp-bench/datasets
+export VPP_BENCH=/home/leos/vpp-bench
+export CONFIG_DIR=$VPP_BENCH/scripts
+export DATASETS=$VPP_BENCH/datasets
+export RESULTS_DIR=$VPP_BENCH/stats/rawdata
 export STARTUP_CONF=$CONFIG_DIR/startup.conf
 export DPDK_CONF=$CONFIG_DIR/tgdpdk.conf
 export PATH=$PATH:$CONFIG_DIR:$RTE_SDK/usertools:$VPP_ROOT/build-root/build-tool-native/tools
