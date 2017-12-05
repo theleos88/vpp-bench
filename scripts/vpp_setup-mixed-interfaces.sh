@@ -24,7 +24,8 @@ sleep 0.1
 echo "IPV4"
 
 #sudo $SFLAG $BINS/vppctl -p $PREFIX set int ip address $NAMELC0P1 $IPLC0P1/24	# Leonardo: no addresses here for mixed!!!
-sudo $SFLAG $BINS/vppctl -p $PREFIX set int ip address $NAMELC0P0 $IPLC0P0/24	# Leonardo: two addresses on the IFx where we go out.
+sudo $SFLAG $BINS/vppctl -p $PREFIX set int ip address $NAMELC0P1 $IPLC0P1/32	# Leonardo: putting back address here
+sudo $SFLAG $BINS/vppctl -p $PREFIX set int ip address $NAMELC0P0 $IPLC0P0/32	# Leonardo: two addresses on the IFx where we go out.
 sudo $SFLAG $BINS/vppctl -p $PREFIX set int ip address $NAMELC0P0 192.168.2.0/24	#/24 Since this is for the bridge
 
 sleep 0.1
