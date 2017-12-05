@@ -3,8 +3,8 @@
 RESULT_FILE=$VPP_ROOT/results_leonardo.dat
 
 ###################################################
-EXP="xc"			#Options: "ip" "mix"
-TYPE="static"		#Options: "rr" "unif"
+EXP="ip"			#Options: "xc" "ip" "mix"
+TYPE="static"		#Options: "static" "rr" "unif"
 NREPS=10
 ###################################################
 
@@ -18,9 +18,27 @@ for i in `seq 1 $NREPS`; do
 	sudo killall pktgen
 	sudo rm /dev/hugepages/*
 
-	vpp_start-default.sh &
+	vpp_start-default.sh vpp$RANDOM &
 	sleep 20
-	vpp_setup-xconnect.sh
+
+	case $EXP in
+	xc)
+		vpp_setup-xconnect.sh
+	;;
+
+	ip)
+		vpp_setup-linecards-address.sh
+	    vpp_add-ip-table.sh $DATASETS/table.dat
+	;;
+
+	mix)
+		vpp_setup-mixed-interfaces.sh
+		vpp_add-ip-table.sh
+		vpp_add-ip-table.sh $DATASETS/table_ip6.dat ip6
+	;;
+
+	esac
+
 
 	cd /usr/local/src/MoonGen
 
