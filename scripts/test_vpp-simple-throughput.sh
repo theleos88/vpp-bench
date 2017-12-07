@@ -1,15 +1,24 @@
 #!/bin/bash
 
-RESULT_FILE=$VPP_ROOT/results_leonardo.dat
+RESULT_FILE=$RESULTS_DIR/results_leonardo.dat
 
 ###################################################
-EXP="ip"			#Options: "xc" "ip" "mix"
+EXP="xc"			#Options: "xc" "ip" "mix"
 TYPE="static"		#Options: "static" "rr" "unif"
+TABLE="$DATASETS/table.dat"
 NREPS=10
 ###################################################
 
 echo "Results:" > $RESULT_FILE  # Initializing Result file
 
+# Check if at least one argument
+if [[ $# -eq 2 ]] ; then
+    EXP=$1
+	TYPE=$2
+	echo "Setting EXP to $1 and TYPE to $2"
+else
+	echo "Using std params. To change run test with EXP TYPE"
+fi
 
 echo 1 | sudo tee /sys/devices/system/cpu/intel_pstate/no_turbo
 
@@ -28,7 +37,7 @@ for i in `seq 1 $NREPS`; do
 
 	ip)
 		vpp_setup-linecards-address.sh
-	    vpp_add-ip-table.sh $DATASETS/table.dat
+	    vpp_add-ip-table.sh $TABLE
 	;;
 
 	mix)
