@@ -28,6 +28,7 @@ echo "" > /tmp/commands$PPID
 source $CONFIG_DIR/config.sh
 
 if [ "$2" == "ip6" ] ; then
+	echo "adding ip6 table"
     for i in `cat $TABLE`; do
         echo "ip route add $i via $DEFAULTIP6" >> /tmp/commands$PPID
     done

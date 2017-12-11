@@ -51,7 +51,7 @@ function configtraffic( choice )
         pktgen.dst_ip("1", "start", "1.1.1.11");
         pktgen.dst_ip("1", "inc", "3.2.1.11");
         pktgen.dst_ip("1", "min", "1.1.1.11");
-        pktgen.dst_ip("1", "max", "220.233.199.99");
+        pktgen.dst_ip("1", "max", "200.233.199.99");
 
         pktgen.delay(50);
         pktgen.src_ip("1", "start", "1.13.0.1");
@@ -68,17 +68,19 @@ end
 
 --------------------------------------------------
 -- MODIFY CONFIGURATION HERE
-SIZES={64, 1500, 340}
-CONFIG= {"static", "roundrobin", "uniform"};
+SIZES={64}
+CONFIG= {"uniform"};
+-- SIZES={64, 1500, 340}
+-- CONFIG= {"static", "roundrobin", "uniform"};
 --------------------------------------------------
 
 LEFT=64;
 RIGHT=1500;
 PRECISION= 0.99;
-SLEEP=20000;     --Sleep here
-SECONDS=SLEEP/1000;
+SECONDS=1000;
+SLEEP=20*SECONDS;     --Sleep here
 
-local file = io.open ("/tmp/data", "w");
+local file = io.open ("/tmp/dataout", "w");
 io.output(file);
 
 outputp=0
@@ -96,7 +98,7 @@ for i,v in pairs(SIZES) do
         pktgen.set_ipaddr("1", "src", "1.1.1.12");
         pktgen.set_mac("1", "90e2:bacb:f545");
         pktgen.set_mac("0", "90e2:bacb:f544");
-        pktgen.set_ipaddr("0", "src", "1.1.1.12/24");
+        --pktgen.set_ipaddr("0", "src", "1.1.1.12/24");
 
         --pktgen.page("range");
         configtraffic(k);
@@ -108,8 +110,16 @@ for i,v in pairs(SIZES) do
         pktgen.clear("all");
     	pktgen.delay(3000);
     	pktgen.start(1);
+
+        os.execute("/home/leos/vpp-bench/scripts/runs.sh 'clear run' "); 
+        os.execute("/home/leos/vpp-bench/scripts/runs.sh 'clear interfaces' "); 
+        os.execute("sudo perf stat -v -p `pgrep vpp_main` -e cpu-clock,cycles,instructions,cpu/event=0x80,umask=0x2,name=icache_misses/,cpu/event=0x80,umask=0x1,name=icache_hit/ -o /tmp/perf-stat.txt &");
     	pktgen.delay(SLEEP);
     	pktgen.stop(1);
+        os.execute("/home/leos/vpp-bench/scripts/runs.sh 'show run' >> /tmp/data ");
+        os.execute("/home/leos/vpp-bench/scripts/runs.sh 'show interface' >> /tmp/data ");
+        os.execute("sudo killall -s INT perf");
+
     	pktgen.delay(3000);
 
         --prints("portRates", pktgen.portStats("all", "rate"));

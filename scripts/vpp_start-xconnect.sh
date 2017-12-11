@@ -22,11 +22,16 @@ if [[ $# -eq 0 ]] ; then
 
 #    sudo $BINS/vpp api-segment { prefix vpp gid vpp } dpdk { dev $LC1P0 dev $LC1P1 socket-mem 1024,1024 } plugin_path $PLUGS
     sudo $BINS/vpp `cat $STARTUP_CONF` plugin_path $PLUGS &
-    sleep 10
-    sudo $SFLAG $BINS/vppctl -p $PREFIX set int l2 xconnect $NAMELC1P1 $NAMELC1P0
-    sudo $SFLAG $BINS/vppctl -p $PREFIX set int state $NAMELC1P0 up
-    sudo $SFLAG $BINS/vppctl -p $PREFIX set int state $NAMELC1P1 up
+    sleep 15
+    sudo $SFLAG $BINS/vppctl -p $PREFIX set int l2 xconnect $NAMELC0P1 $NAMELC0P0
+    sudo $SFLAG $BINS/vppctl -p $PREFIX set int state $NAMELC0P0 up
+    sudo $SFLAG $BINS/vppctl -p $PREFIX set int state $NAMELC0P1 up
 
+    echo "$BINS/vppctl -p $PREFIX set int l2 xconnect $NAMELC0P1 $NAMELC0P0"
+    echo "$BINS/vppctl -p $PREFIX set int state $NAMELC0P0 up"
+    echo "$BINS/vppctl -p $PREFIX set int state $NAMELC0P1 up"
+
+	echo "Done Xconnecting"
     exit 1
 fi
 
