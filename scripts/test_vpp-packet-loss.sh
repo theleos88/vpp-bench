@@ -29,14 +29,23 @@ sleep 4
 
 echo "Testing at Rate $rmoon or $inrate"
 
-sudo ./build/MoonGen $CONFIG_DIR/moongen_txgen/single_tx.lua --dpdk-config=/home/leos/vpp-bench/scripts/moongen_txgen/dpdk-conf.lua 1 -f 1 -r $rmoon &
+runs.sh "clear run"
+runs.sh "clear interfaces"
+
+sudo ./build/MoonGen $CONFIG_DIR/moongen_txgen/single_tx.lua --dpdk-config=/home/leos/vpp-bench/scripts/moongen_txgen/dpdk-conf.lua 1 -f 1 -r $rmoon  > /tmp/moon.dat &
+
 sleep 35
 
-a='event-logger save'
-b=" xc."$1".dat"
+#a='event-logger save'
+#b=" xc."$1".dat"
+#runs.sh "$a$b"
 
+OUTFILE = /tmp/xc.$1.pktloss.dat
 
-runs.sh "$a$b"
+runs.sh "show run" > $OUTFILE
+runs.sh "show int" >> $OUTFILE
+echo "------------------------"  >> $OUTFILE
+grep "TX" /tmp/moon.dat >> $OUTFILE
 
 #sudo killall vpp_main
 sudo killall MoonGen
