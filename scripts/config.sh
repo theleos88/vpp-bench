@@ -67,9 +67,9 @@ DEFAULTIP="99.99.99.99"
 DEFAULTIP6="2211:2::ffff"
 
 # VPP
-#export VPP_ROOT=/usr/local/src/vpp
-export VPP_ROOT=/home/leos/vppdev/vpp
-#export VPP_ROOT=/home/leos/vpp_1710
+#export VPP_ROOT=/usr/local/src/vpp   		## Global VPP install
+export VPP_ROOT=/home/leos/vppdev/vpp  		## Development version
+#export VPP_ROOT=/home/leos/vpp_1710    	## VPP 17.10 (or 18.01 or whatever)
 
 # DPDK
 export RTE_SDK=/home/leos/dpdkdev/dpdk-17.02
