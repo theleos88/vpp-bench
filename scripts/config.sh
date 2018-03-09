@@ -21,10 +21,10 @@ export LC1P0=0000:04:00.1
 export LC1P1=0000:05:00.1
 
 # Router-friendly names
-export NAMELC0P0="TenGigabitEthernetb/0/0"
-export NAMELC0P1="TenGigabitEthernetb/0/1"
-export NAMELC1P0="TenGigabitEthernet84/0/0"
-export NAMELC1P1="TenGigabitEthernet84/0/1"
+export NAMELC0P0="TenGigabitEthernet3/0/0"
+export NAMELC0P1="TenGigabitEthernet3/0/1"
+export NAMELC1P0="TenGigabitEthernet4/0/1"
+export NAMELC1P1="TenGigabitEthernet5/0/1"
 
 # Linux-friendly names
 export DEVLC0P0="enp11s0f0"
