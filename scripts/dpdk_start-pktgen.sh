@@ -28,9 +28,9 @@ for i in "${!param[@]}"; do param["$i"]=$(echo -e `grep $i $DPDK_CONF | cut -d '
 
 if [[ $# -eq 0 ]] ; then
     echo 'STARTING PKTGEN FROM TGDPDK'
-	echo "app/app/x86_64-native-linuxapp-gcc/pktgen -l ${param['main-core']},${param['workers']} -n 1 ${param['dev']} -m 2048 -- -P -T -m ${param['map']}"
+	echo "app/app/x86_64-native-linuxapp-gcc/pktgen -l ${param['main-core']},${param['workers']} -n 1 ${param['dev']} -m 2048 --file-prefix ${param['prefix']} -- -P -T -m ${param['map']}"
 
-	sudo -E app/app/x86_64-native-linuxapp-gcc/pktgen -l ${param['main-core']},${param['workers']} -n 1 -m 2048 ${param['dev']} -- -P -T -m ${param['map']}
+	sudo -E app/app/x86_64-native-linuxapp-gcc/pktgen -l ${param['main-core']},${param['workers']} -n 1 -m 2048 ${param['dev']} --file-prefix ${param['prefix']} -- -P -T -m ${param['map']}
 #	exit 1
 fi
 
