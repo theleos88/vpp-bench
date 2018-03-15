@@ -5,7 +5,7 @@
 -- In this case it may be necessary to use the blacklist or whitelist features in some configurations.
 DPDKConfig {
     -- configure the CPU cores to use, default: all cores
-    cores = {0,13,14,15,16,17,18,19,20,21,22,37,38,39,40,41,42,43,44,45},
+    cores = {13,14,15,16,17,18,19,20,21,22,23},
 
     -- max number of shared tasks running on core 0
     --sharedCores = 8,
@@ -20,7 +20,7 @@ DPDKConfig {
     -- cf. http://dpdk.org/doc/guides/prog_guide/multi_proc_support.html#running-multiple-independent-dpdk-applications
     cli = {
         "--file-prefix", "m1",
-        "--socket-mem", "512,512"
+        "--socket-mem", "2048,2048"
     }
 
 }
