@@ -16,7 +16,8 @@ local DST_IP		= "10.1.0.10"
 local SRC_PORT		= 1234
 local DST_PORT		= 319
 
-EXP_TIME = 10
+EXP_TIME = 15
+WARMUP_TIME = 5
 
 -- answer ARP requests for this IP on the rx port
 -- change this if benchmarking something like a NAT device
@@ -34,7 +35,7 @@ function configure(parser)
 	parser:option("-f --flows", "Number of flows (randomized source IP)."):default(200):convert(tonumber)
 	parser:option("-s --size", "Packet size."):default(60):convert(tonumber)
 	parser:option("-l --slaves", "Slaves."):default(2):convert(tonumber)
-	parser:option("-t --type", "Exp type."):default("static")
+	parser:option("-t --type", "Exp type."):default("unif")
 	parser:option("-m --mix", "Mix traffic."):default("xc")
 	parser:option("-v --fs", "VLIB Frame size."):default(256):convert(tonumber)
 end
@@ -53,7 +54,7 @@ function master(args)
 	end
 
 	for i=0,(args.slaves-1) do
-		mg.startTask("loadSlave", txDev:getTxQueue(i), args.size, args.flows, args.type)
+		mg.startTask("loadSlave", txDev:getTxQueue(i), args.size, args.flows, args.type, args.rate/(args.slaves))
 	end
 
 	mg.startTask("loadStats", txDev, rxDev, args.size, args.flows, args.type, args.mix, args.fs)
@@ -96,7 +97,7 @@ local function doArp()
 	log:info("Destination mac: %s", DST_MAC)
 end
 
-function loadSlave(queue, size, flows, type)
+function loadSlave(queue, size, flows, type, rate)
 	--doArp()
 	local mempool = memory.createMemPool(function(buf)
 		fillUdpPacket(buf, size)
@@ -104,6 +105,25 @@ function loadSlave(queue, size, flows, type)
 	local bufs = mempool:bufArray()
 	local counter = 0
 	local baseIP = parseIPAddress(SRC_IP_BASE)
+
+	queue:setRate(rate)
+
+    local timer = timer:new(WARMUP_TIME)
+
+	-- Warmup
+	while mg.running() and not timer:expired() do
+		bufs:alloc(size)
+		for i, buf in ipairs(bufs) do
+			local pkt = buf:getUdpPacket()
+			pkt.ip4.dst:set(baseIP + counter)
+			counter = math.random(1,10000000)
+		end
+		-- UDP checksums are optional, so using just IPv4 checksums would be sufficient here
+		bufs:offloadUdpChecksums()
+		queue:send(bufs)
+	end
+
+	log:info("Finishing warmup. Starting experiment")
 
 	if type == "static" then
 		while mg.running() do
@@ -157,6 +177,7 @@ function loadStats(txDev, rxDev, size, flows, exp, type, fs)
 
 	local file = io.open("/tmp/dataout", "a")
 	io.output(file);
+	local written = false
 
 	io.write("FS: "..fs.." EXP: "..exp.." TYPE: "..type.." ")
 	mg.sleepMillis(10000) -- ensure that the load task is running
@@ -166,6 +187,7 @@ function loadStats(txDev, rxDev, size, flows, exp, type, fs)
 	while mg.running() do
 		txCtr:update()
 		rxCtr:update()
+
 	end
 	rxCtr:finalize()
 	txCtr:finalize()
