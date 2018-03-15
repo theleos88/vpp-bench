@@ -58,7 +58,13 @@ if __name__ == '__main__':
 
                     #print ("Id:",e,"Vector:",f,"Clock:",g,"TS:",h)
                     #print ("Id:",e,"Vector:",f,"Clock:",g)
-                    print ("Vector: ", f, " Clocks: ", d1 )
+                    if (f == 1000):
+                        print ("START: ", f, " Clocks: ", d1 )
+                    elif (f == 2000):
+                        print ("END: ", f, " Clocks: ", d1 )
+                    else:
+                        print ("SIZE: ", f, " Clocks: ", d1 )
+
                 except:
                     print ("")
 
