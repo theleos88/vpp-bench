@@ -2,9 +2,11 @@ set mac 1 90:e2:ba:cb:f5:45
 set mac 0 90:e2:ba:cb:f5:44
 set ip src 1 2.13.0.1/32
 set ip src 0 2.13.4.1/32
+set ip dst 1 1.2.3.4
+set ip dst 0 1.1.1.11
 proto udp 1
 
 set 1 count 150000
-set 1 rate 1
 start 1
+set 1 count 0
 
