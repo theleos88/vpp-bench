@@ -1,11 +1,13 @@
 #!/bin/bash
 
-RESULT_FILE=$RESULTS_DIR/results_leonardo.dat
+TS="$(date +%H%M_%y%m%d)"
+RESULT_FILE=/home/leos/git/rawdata/moongen_tx_results/results_$TS.dat
 
 ###################################################
-EXP="xc"			#Options: "xc" "ip" "mix"
-TYPE="static"		#Options: "static" "rr" "unif"
-TABLE="$DATASETS/table.dat"
+EXP="ip"			#Options: "xc" "ip" "mix"
+TYPE="unif"			#Options: "static" "rr" "unif"
+TABLE="$DATASETS/table130k.dat"
+#TABLE=""
 NREPS=10
 ###################################################
 
@@ -49,12 +51,18 @@ for i in `seq 1 $NREPS`; do
 	esac
 
 
-	cd /usr/local/src/MoonGen
+	cd $MOONDIR
 
 	echo "TYPE: $TYPE, EXP: $EXP"
-	sudo -E ./build/MoonGen experiments_traffic/throughput.lua 1 0 -t $TYPE -m $EXP >> $RESULT_FILE
+	sudo -E ./build/MoonGen $CONFIG_DIR/moongen_txgen/throughput.lua --dpdk-config=/home/leos/vpp-bench/scripts/moongen_txgen/dpdk-conf.lua  1 0 -r 10000 -t $TYPE -m $EXP >> $RESULT_FILE
+	cat /tmp/dataout >> $RESULT_FILE.$TYPE.$EXP
 
 done;
+
+#mv $RESULT_FILE $RESULTS_DIR/result$1$2.dat
+sudo killall vpp_main
+sudo killall pktgen
+sudo rm /dev/hugepages/*
 
 echo "*****************************************"
 echo "Done. Check result file at $RESULT_FILE"
