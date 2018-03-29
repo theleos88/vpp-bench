@@ -31,7 +31,7 @@ if [[ $# -eq 0 ]] ; then
 	echo "app/app/x86_64-native-linuxapp-gcc/pktgen -l ${param['main-core']},${param['workers']} -n 1 ${param['dev']} -m 2048 --file-prefix ${param['prefix']} -- -P -T -m ${param['map']}"
 
 	sudo -E app/app/x86_64-native-linuxapp-gcc/pktgen -l ${param['main-core']},${param['workers']} -n 1 -m 2048 ${param['dev']} --file-prefix ${param['prefix']} -- -P -T -m ${param['map']}
-#	exit 1
+	exit 1
 fi
 
 if [ "$1" == "forwarding" ]; then
@@ -41,5 +41,5 @@ elif [ "$1" == "--prefix" ]; then
 	#echo " app/app/x86_64-native-linuxapp-gcc/pktgen -l ${param['main-core']},${param['workers']} -n 1 -m 2048 ${param['dev']} --file-prefix $2 -- -P -T -m "${param['map']}""
 else
 	echo "Starting pktgen with a .pkt file"
-	#sudo app/app/x86_64-native-linuxapp-gcc/pktgen -l 12,13-16 -n 1 -w $LC0P0 -w $LC0P1 -- -P -T -m "[13-14].0,[15-16].1" -f $1
+	sudo -E app/app/x86_64-native-linuxapp-gcc/pktgen -l ${param['main-core']},${param['workers']} -n 1 -m 2048 ${param['dev']} --file-prefix ${param['prefix']} -- -P -T -m ${param['map']} -f $1
 fi
