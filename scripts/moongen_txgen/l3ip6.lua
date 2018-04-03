@@ -52,24 +52,18 @@ function configure(parser)
 end
 
 function master(args)
-	txDev = device.config{port = args.txDev, rxQueues = args.slaves  , txQueues = args.slaves}
-	rxDev = device.config{port = args.rxDev, rxQueues = 3, txQueues = 3}
+	txDev = device.config{port = args.txDev, rxQueues = 1  , txQueues = 1}
+	rxDev = device.config{port = args.rxDev, rxQueues = 1, txQueues = 1}
 	print ("Leos TX / RX = "..args.txDev.." || "..args.rxDev.." "..args.slaves.."\n")	
 
 	device.waitForLinks()
 
 	mg.startTask("statsSlave", txDev, rxDev, args.size, args.flows)
+	mg.startTask("loadSlave", txDev:getTxQueue(0), rxDev, args.size, args.flows)
 
-	for i=0,args.slaves-1 do
-		mg.startTask("loadSlave", txDev:getTxQueue(i), rxDev, args.size, args.flows)
-	end
+--	for i=0,args.slaves-1 do
+--	end
 
-	arp.startArpTask{
-		-- run ARP on both ports
-		{ rxQueue = rxDev:getRxQueue(2), txQueue = rxDev:getTxQueue(2), ips = RX_IP },
-		-- we need an IP address to do ARP requests on this interface
-		{ rxQueue = txDev:getRxQueue(2), txQueue = txDev:getTxQueue(2), ips = ARP_IP }
-	}
 	mg.waitForTasks()
 end
 
@@ -110,7 +104,6 @@ local function doArp()
 end
 
 function loadSlave(queue, rxDev, size, flows)
-	doArp()
 	local mempool = memory.createMemPool(function(buf)
 		fillUdp6Packet(buf, size)
 	end)
@@ -120,14 +113,14 @@ function loadSlave(queue, rxDev, size, flows)
 	local baseIP6 = parseIP6Address(SRC_IP6_BASE)
 	while mg.running() do
 		b = bufs:alloc(size)
-		--clib.fill_ip6(bufs.array, 32)	-- Working, but I need to fix that 32 hardcoded
-		for i, buf in ipairs(bufs) do
-			local pkt = buf:getUdp6Packet()
+		clib.fill_ip6(bufs.array, 32)	-- Working, but I need to fix that 32 hardcoded
+		--for i, buf in ipairs(bufs) do
+		--	local pkt = buf:getUdp6Packet()
 			--clib.fill_single_ip6(buf)	-- Working, at 8.4 Mpps
 			--clib.fill_rr_ip6(buf)
-			pkt.ip6.dst:set(baseIP6 + counter)	-- This is really slow 
-			counter = incAndWrap(counter, flows)
-		end
+			--pkt.ip6.dst:set(baseIP6 + counter)	-- This is really slow 
+		--	counter = incAndWrap(counter, flows)
+		--end
 		-- UDP checksums are optional, so using just IPv4 checksums would be sufficient here
 		bufs:offloadUdpChecksums(false)
 		queue:send(bufs)
