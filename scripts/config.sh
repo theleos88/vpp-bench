@@ -68,19 +68,18 @@ DEFAULTIP6="2211:2::ffff"
 
 # VPP
 #export VPP_ROOT=/usr/local/src/vpp
-export VPP_ROOT=/home/leos/vppdev/vpp
-#export VPP_ROOT=/home/leos/vpp_1710
+export VPP_ROOT=$HOME/vppdev/vpp
 
 # DPDK
-export RTE_SDK=/home/leos/dpdkdev/dpdk-17.02
-export RTE_PKTGEN=/home/leos/dpdkdev/pktgen-dpdk-pktgen-3.1.2
+export RTE_SDK=$HOME/dpdkdev/dpdk-17.02
+export RTE_PKTGEN=$HOME/dpdkdev/pktgen-dpdk-pktgen-3.1.2
 export RTE_TARGET=x86_64-native-linuxapp-gcc
 
 # MoonGen
 export MOONDIR=/usr/local/src/MoonGen
 
 # Config
-export VPP_BENCH=/home/leos/vpp-bench
+export VPP_BENCH=$HOME/vpp-bench
 export CONFIG_DIR=$VPP_BENCH/scripts
 export DATASETS=$VPP_BENCH/datasets
 export RESULTS_DIR=$VPP_BENCH/stats/rawdata
