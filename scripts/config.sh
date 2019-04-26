@@ -15,28 +15,28 @@
 ## Configuration variables and aliases are provided at the end of the file
 
 # Linecards
-export LC0P0=0000:0b:00.0
-export LC0P1=0000:0b:00.1
-export LC1P0=0000:84:00.0
-export LC1P1=0000:84:00.1
+export LC0P0=0000:01:00.0
+export LC0P1=0000:03:00.1
+#export LC1P0=0000:84:00.0
+#export LC1P1=0000:84:00.1
 
 # Router-friendly names
-export NAMELC0P0="TenGigabitEthernetb/0/0"
-export NAMELC0P1="TenGigabitEthernetb/0/1"
-export NAMELC1P0="TenGigabitEthernet84/0/0"
-export NAMELC1P1="TenGigabitEthernet84/0/1"
+export NAMELC0P0="TenGigabitEthernet1/0/0"
+export NAMELC0P1="TenGigabitEthernet3/0/0"
+#export NAMELC1P0="TenGigabitEthernet84/0/0"
+#export NAMELC1P1="TenGigabitEthernet84/0/1"
 
 # Linux-friendly names
-export DEVLC0P0="enp11s0f0"
-export DEVLC0P1="enp11s0f1"
-export DEVLC1P0="enp132s0f0"
-export DEVLC1P1="enp132s0f1"
+export DEVLC0P0="enp1s0"
+export DEVLC0P1="enp3s0"
+#export DEVLC1P0="enp132s0f0"
+#export DEVLC1P1="enp132s0f1"
 
 # MAC addresses
-export MACLC0P0="90:e2:ba:cb:f5:38"
-export MACLC0P1="90:e2:ba:cb:f5:39"
-export MACLC1P0="90:e2:ba:cb:f5:44"
-export MACLC1P1="90:e2:ba:cb:f5:45"
+export MACLC0P0="90:e2:ba:2c:cb:02"
+export MACLC0P1="90:e2:ba:1f:8d:44"
+#export MACLC1P0="90:e2:ba:cb:f5:44"
+#export MACLC1P1="90:e2:ba:cb:f5:45"
 
 export MACLOOP="90:e2:ba:cb:f5:46"
 
