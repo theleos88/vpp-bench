@@ -12,7 +12,15 @@ if [[ $# -eq 1 ]] ; then
 	sed -i "s/^\(  prefix \).*/\1$1/" $STARTUP_CONF
 fi
 
-PREFIX=`cat $STARTUP_CONF | grep prefix | awk '{print $2}' | xargs echo -n`
+PREFIX=`cat $STARTUP_CONF | grep cli-listen | awk '{print $2}' | xargs echo -n`
 
 echo "STARTING VPP WITH (name=$PREFIX)."
-sudo $BINS/vpp `cat $STARTUP_CONF` plugin_path $PLUGS
+
+# Should be no need for plugin path
+if [[ $EUID -ne 0 ]]; then
+   echo "Running as sudo"
+   sudo $BINS/vpp `cat $STARTUP_CONF` plugin_path $PLUGS
+else
+   $BINS/vpp `cat $STARTUP_CONF`
+fi
+
