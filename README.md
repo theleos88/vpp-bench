@@ -16,6 +16,12 @@ This repository is meant to be used in conjunction with other github repos:
 - Development code on VPP (at version 17.04) is regularly pushed to https://github.com/theleos88/vppdev
 - DPDK code (SDK version 17.01, traffic generator version 3.1.2) is also maintained in https://github.com/theleos88/dpdkdev
 
+**TAGS**
+Checkout to tags v16.04 for the scripts valid for VPP 16.04
+Master: VPP 19.04
+
+
+
 ### Outline
 
 * [Before starting](https://github.com/theleos88/vpp-bench#before-starting)
