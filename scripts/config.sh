@@ -68,15 +68,16 @@ DEFAULTIP6="2211:2::ffff"
 
 # VPP
 #export VPP_ROOT=/usr/local/src/vpp
-export VPP_ROOT=$HOME/vppdev/vpp
+export VPP_ROOT=$HOME/vpp
 
 # DPDK
-export RTE_SDK=$HOME/dpdkdev/dpdk-17.02
-export RTE_PKTGEN=$HOME/dpdkdev/pktgen-dpdk-pktgen-3.1.2
+export RTE_SDK=$HOME/dpdk-17.02
+#export RTE_PKTGEN=$HOME/dpdkdev/pktgen-dpdk-pktgen-3.1.2
 export RTE_TARGET=x86_64-native-linuxapp-gcc
 
 # MoonGen
-export MOONDIR=/usr/local/src/MoonGen
+#export MOONDIR=/usr/local/src/MoonGen
+export MOONDIR=$HOME/MoonGen
 
 # Config
 export VPP_BENCH=$HOME/vpp-bench
@@ -92,10 +93,10 @@ export PLUGS="$VPP_ROOT/build-root/install-vpp-native/vpp/lib64/vpp_plugins"
 export SFLAG="env PATH=$PATH:$BINS"
 
 # Aliases
-alias force-update-conf="svn export https://github.com/theleos88/vpp-bench/trunk/scripts --force $CONFIG_DIR && source $CONFIG_DIR/config.sh"
-alias update-conf="source $CONFIG_DIR/config.sh"
+#alias force-update-conf="svn export https://github.com/theleos88/vpp-bench/trunk/scripts --force $CONFIG_DIR && source $CONFIG_DIR/config.sh"
+#alias update-conf="source $CONFIG_DIR/config.sh"
 alias show-conf="cat $CONFIG_DIR/config.sh"
 alias list-scripts="ls -l $CONFIG_DIR/*.sh"
-alias dpdk-setup="$RTE_SDK/usertools/dpdk-setup.sh"
-alias vppctl="sudo $SFLAG $BINS/vppctl"
-alias vppprefix="cat $STARTUP_CONF | grep prefix | cut -d'x' -f2 | xargs echo -n"
+#alias dpdk-setup="$RTE_SDK/usertools/dpdk-setup.sh"
+#alias vppctl="sudo $SFLAG $BINS/vppctl"
+#alias vppprefix="cat $STARTUP_CONF | grep prefix | cut -d'x' -f2 | xargs echo -n"
