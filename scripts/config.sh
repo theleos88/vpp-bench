@@ -16,7 +16,7 @@
 
 # Linecards
 export LC0P0=0000:01:00.0
-export LC0P1=0000:03:00.1
+export LC0P1=0000:03:00.0
 #export LC1P0=0000:84:00.0
 #export LC1P1=0000:84:00.1
 
