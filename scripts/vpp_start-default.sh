@@ -19,7 +19,7 @@ echo "STARTING VPP WITH (name=$PREFIX)."
 # Should be no need for plugin path
 if [[ $EUID -ne 0 ]]; then
    echo "Running as sudo"
-   sudo $BINS/vpp `cat $STARTUP_CONF` plugin_path $PLUGS
+   sudo $BINS/vpp `cat $STARTUP_CONF`
 else
    $BINS/vpp `cat $STARTUP_CONF`
 fi
