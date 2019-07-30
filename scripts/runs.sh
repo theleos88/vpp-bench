@@ -2,7 +2,7 @@
 
 source /home/leos/vpp-bench/scripts/config.sh
 #source $CONFIG_DIR/config.sh
-PREFIX=`cat $STARTUP_CONF | grep prefix | awk '{print $2}' | xargs echo -n`
+PREFIX=`cat $STARTUP_CONF | grep cli-listen| awk '{print $2}' | xargs echo -n`
 
 
 ## Version 16.04

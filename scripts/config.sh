@@ -71,8 +71,8 @@ DEFAULTIP6="2211:2::ffff"
 export VPP_ROOT=$HOME/vpp
 
 # DPDK
-export RTE_SDK=$HOME/dpdk-17.02
-#export RTE_PKTGEN=$HOME/dpdkdev/pktgen-dpdk-pktgen-3.1.2
+export RTE_SDK=$HOME/dpdk
+export RTE_PKTGEN=$HOME/pktgen-dpdk
 export RTE_TARGET=x86_64-native-linuxapp-gcc
 
 # MoonGen

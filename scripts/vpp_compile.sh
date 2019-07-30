@@ -4,9 +4,9 @@
 
 cd $VPP_ROOT
 make wipe-release
-rm -r build-root/.ccache/
-rm -r build-root/install-vpp-native
-rm -r build-root/build-vpp-native/
+rm -rf build-root/.ccache/
+rm -rf build-root/install-vpp-native
+rm -rf build-root/build-vpp-native/
 
 make install-ext-deps
 make build-release
