@@ -15,10 +15,8 @@
 ## Configuration variables and aliases are provided at the end of the file
 
 # Linecards
-export LC0P0=0000:0b:00.0
-export LC0P1=0000:0b:00.1
-export LC1P0=0000:84:00.0
-export LC1P1=0000:84:00.1
+export LC0P0=0000:01:00.0
+export LC0P1=0000:01:00.1
 
 # Router-friendly names
 export NAMELC0P0="TenGigabitEthernetb/0/0"
