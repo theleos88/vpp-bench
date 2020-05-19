@@ -19,41 +19,29 @@ export LC0P0=0000:01:00.0
 export LC0P1=0000:01:00.1
 
 # Router-friendly names
-export NAMELC0P0="TenGigabitEthernetb/0/0"
-export NAMELC0P1="TenGigabitEthernetb/0/1"
-export NAMELC1P0="TenGigabitEthernet84/0/0"
-export NAMELC1P1="TenGigabitEthernet84/0/1"
+export NAMELC0P0="TenGigabitEthernet1/0/0"
+export NAMELC0P1="TenGigabitEthernet1/0/1"
 
 # Linux-friendly names
 export DEVLC0P0="enp11s0f0"
 export DEVLC0P1="enp11s0f1"
-export DEVLC1P0="enp132s0f0"
-export DEVLC1P1="enp132s0f1"
 
 # MAC addresses
 export MACLC0P0="90:e2:ba:cb:f5:38"
 export MACLC0P1="90:e2:ba:cb:f5:39"
-export MACLC1P0="90:e2:ba:cb:f5:44"
-export MACLC1P1="90:e2:ba:cb:f5:45"
 
 export MACLOOP="90:e2:ba:cb:f5:46"
 
 # Port numbers (For MoonGen)
 export IDLC0P0="0"
 export IDLC0P1="1"
-export IDLC1P0="2"
-export IDLC1P1="3"
 
 
 # IP addresses
 export IPLC0P0="1.1.1.11"
 export IPLC0P1="1.1.1.12"
-export IPLC1P0="1.1.1.21"
-export IPLC1P1="1.1.1.22"
 
 # IP6 addresses
-export IP6LC1P0="2011:2::ffff"
-export IP6LC1P1="2011:3::ffff"
 export IP6LC0P0="2010:2::ffff"
 export IP6LC0P1="2010:3::ffff"
 
