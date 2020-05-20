@@ -7,7 +7,8 @@ SET(PRJ fill-ip6)
 
 file(GLOB SOURCES *.c *.cpp)
 
-SET(LIBMOON_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../libmoon/)
+# LL. adding absolute path to the libmoonDir
+SET(LIBMOON_DIR /home/leo/MoonGen/libmoon/)
 
 # header files for stuff that is available in libmoon
 INCLUDE_DIRECTORIES(
