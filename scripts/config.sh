@@ -27,8 +27,10 @@ export DEVLC0P0="enp11s0f0"
 export DEVLC0P1="enp11s0f1"
 
 # MAC addresses
-export MACLC0P0="90:e2:ba:cb:f5:38"
-export MACLC0P1="90:e2:ba:cb:f5:39"
+export MACLC0P0="90:e2:ba:f1:d8:dc"
+export MACLC0P1="90:e2:ba:f1:d8:dd"
+export MACLC1P0="90:e2:ba:f1:dc:4c"	# These are also needed even for 2 separate machines
+export MACLC1P1="90:e2:ba:f1:dc:4d"
 
 export MACLOOP="90:e2:ba:cb:f5:46"
 
@@ -40,10 +42,14 @@ export IDLC0P1="1"
 # IP addresses
 export IPLC0P0="1.1.1.11"
 export IPLC0P1="1.1.1.12"
+export IPLC1P0="1.1.1.21"	# In fact, these are needed also for the mixed interface
+export IPLC1P1="1.1.1.22"	# Even though we have a single LC with 2 ports
 
 # IP6 addresses
 export IP6LC0P0="2010:2::ffff"
 export IP6LC0P1="2010:3::ffff"
+export IP6LC1P0="2011:2::ffff"
+export IP6LC1P1="2011:3::ffff"
 
 export IPLOOP="10.0.0.0"
 export IP6LOOP="2011:1::ffff"
