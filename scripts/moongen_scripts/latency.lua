@@ -12,11 +12,13 @@ local ffi    = require "ffi"
 
 -- set addresses here
 local DST_MAC		= nil -- resolved via ARP on GW_IP or DST_IP, can be overriden with a string here
-local SRC_IP_BASE	= "10.0.0.10" -- actual address will be SRC_IP_BASE + random(0, flows)
-local DST_IP		= "11.1.0.10"
-local DST_L2		= "10.0.0.15"
+local SRC_IP_BASE	= "10.0.1.10" -- actual address will be SRC_IP_BASE + random(0, flows)
+local DST_IP		= "10.0.1.15"
+local DST_L2		= "192.168.2.2"
 local SRC_PORT		= 1234
 local DST_PORT		= 319
+local DST_MAC_LOOP	= "90:e2:ba:cb:f5:46"
+local DST_INTERFACE	= "90:e2:ba:f1:dc:4c"	-- This is specific to the testbed of werner-heisenberg
 
 -- Experiment param
 EXP_TIME = 10
@@ -65,9 +67,15 @@ function master(args)
 	device.waitForLinks()
 	rate = args.rate/3.0	--We have three transmit queues.
 
+--	mg.startTask("loadSlaveL2",  txDev:getTxQueue(0), args.size, rate)
+--	mg.startTask("loadSlaveIp",  txDev:getTxQueue(1), args.size, rate)
+--	mg.startTask("loadSlaveIp6", txDev:getTxQueue(2), args.size, rate)
+
+-- LL| Testing only L2
 	mg.startTask("loadSlaveL2",  txDev:getTxQueue(0), args.size, rate)
-	mg.startTask("loadSlaveIp",  txDev:getTxQueue(1), args.size, rate)
-	mg.startTask("loadSlaveIp6", txDev:getTxQueue(2), args.size, rate)
+	mg.startTask("loadSlaveIp6",  txDev:getTxQueue(1), args.size, rate)
+	mg.startTask("loadSlaveIp", txDev:getTxQueue(2), args.size, rate)
+
 
 	mg.startTask("timerSlave", txDev:getTxQueue(3), rxDev:getRxQueue(3), args.size)	-- For latency
 	mg.startTask("loadStats", txDev, rxDev, args.size)
@@ -90,9 +98,9 @@ end
 local function fillL2Packet(buf, len)
 	buf:getUdpPacket():fill{
 		ethSrc = queue,
-		ethDst = "90:e2:ba:f1:d8:dc",
+		ethDst = DST_INTERFACE,	-- LL| 27/05: replacing with the mac of the loop interface
 		ip4Src = SRC_IP,
-		ip4Dst = DST_L2,
+		ip4Dst = "1.1.1.21",  --DST_L2,
 		udpSrc = SRC_PORT,
 		udpDst = DST_PORT,
 		pktLength = len
