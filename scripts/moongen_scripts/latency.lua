@@ -14,7 +14,7 @@ local ffi    = require "ffi"
 local DST_MAC		= nil -- resolved via ARP on GW_IP or DST_IP, can be overriden with a string here
 local SRC_IP_BASE	= "10.0.0.10" -- actual address will be SRC_IP_BASE + random(0, flows)
 local DST_IP		= "11.1.0.10"
-local DST_L2		= "1.1.1.21"
+local DST_L2		= "10.0.0.15"
 local SRC_PORT		= 1234
 local DST_PORT		= 319
 
@@ -78,9 +78,9 @@ end
 local function fillUdpPacket(buf, len)
 	buf:getUdpPacket():fill{
 		ethSrc = queue,
-		ethDst = "90:e2:ba:cb:f5:46",	--Modified
+		ethDst = "90:e2:ba:cb:f5:46",	--Modified Must be the MAC LOOP
 		ip4Src = SRC_IP,
-		ip4Dst = "1.1.1.21", --DST_IP,	-- Changint with DEFAULT_IP or IPLC0P0
+		ip4Dst = "192.168.2.2", --DST_IP,	-- Changing with DEFAULT_IP or IPLC0P0 -- 19/05/2020 but in reality it should be the address at the bridge
 		udpSrc = SRC_PORT,
 		udpDst = DST_PORT,
 		pktLength = len
@@ -90,7 +90,7 @@ end
 local function fillL2Packet(buf, len)
 	buf:getUdpPacket():fill{
 		ethSrc = queue,
-		ethDst = "90:e2:ba:cb:f5:39",
+		ethDst = "90:e2:ba:f1:d8:dc",
 		ip4Src = SRC_IP,
 		ip4Dst = DST_L2,
 		udpSrc = SRC_PORT,
@@ -102,7 +102,7 @@ end
 local function fillUdp6Packet(buf, len)
     buf:getUdp6Packet():fill{
         ethSrc = queue,
-        ethDst = "90:e2:ba:cb:f5:46",
+        ethDst = "90:e2:ba:cb:f5:46",	-- LL 19/05/2020: original was l3-l2-ip6 = 46:39:46
         ip6Src = "1111::1",
         ip6Dst = "1221::1",
         udpSrc = SRC_PORT,
