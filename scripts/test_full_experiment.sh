@@ -9,11 +9,13 @@ else
 fi
 
 
+source ~/vpp-bench/scripts/config.sh
+
 echo "*** STARTING EXPERIMENT + $EXP"
 
 for r in `seq 500 500 10001`; do
 	sudo killall vpp_main
-	vpp_start-default &
+	vpp_start-default.sh &
 
 
 	if [ $EXP == "xc" ]; then
@@ -46,7 +48,7 @@ for r in `seq 500 500 10001`; do
 	sudo killall vpp_main
 
 	echo "File systems checks"
-	cp /tmp/clock.dat	/tmp/clock-$EXP-$r.dat
+	sudo mv /tmp/clock.dat	/tmp/clock-$EXP-$r.dat
 	scp leo@werner:$MOONDIR/histogram.csv /tmp/histogram-$EXP-$r.csv
 
 
