@@ -56,7 +56,7 @@ function configure(parser)
 	parser:option("-s --size", "Packet size."):default(60):convert(tonumber)
 	parser:option("-l --slaves", "Slaves."):default(5):convert(tonumber)
 --	parser:option("-t --type", "Exp type."):default("static")
---	parser:option("-m --mix", "Mix traffic."):default("ip")
+	parser:option("-m --mix", "Mix traffic."):default("xc")
 --	parser:option("-v --fs", "VLIB Frame size."):default(256):convert(tonumber)
 end
 
@@ -67,15 +67,16 @@ function master(args)
 	device.waitForLinks()
 	rate = args.rate/3.0	--We have three transmit queues.
 
---	mg.startTask("loadSlaveL2",  txDev:getTxQueue(0), args.size, rate)
---	mg.startTask("loadSlaveIp",  txDev:getTxQueue(1), args.size, rate)
---	mg.startTask("loadSlaveIp6", txDev:getTxQueue(2), args.size, rate)
-
--- LL| Testing only L2
 	mg.startTask("loadSlaveL2",  txDev:getTxQueue(0), args.size, rate)
-	mg.startTask("loadSlaveIp6",  txDev:getTxQueue(1), args.size, rate)
 	mg.startTask("loadSlaveIp", txDev:getTxQueue(2), args.size, rate)
 
+	if args.mix == "mix" then
+		printf ("MIX EXPERIMENT")
+		mg.startTask("loadSlaveIp6",  txDev:getTxQueue(1), args.size, rate)
+	else
+		printf ("XC EXPERIMENT")
+		mg.startTask("loadSlaveIp",  txDev:getTxQueue(1), args.size, rate)
+	end
 
 	mg.startTask("timerSlave", txDev:getTxQueue(3), rxDev:getRxQueue(3), args.size)	-- For latency
 	mg.startTask("loadStats", txDev, rxDev, args.size)
