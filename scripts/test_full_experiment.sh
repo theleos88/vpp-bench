@@ -12,6 +12,8 @@ fi
 source ~/vpp-bench/scripts/config.sh
 
 echo "*** STARTING EXPERIMENT + $EXP"
+PKTSIZE=124
+
 
 for r in `seq 500 500 10001`; do
 
@@ -40,7 +42,7 @@ for r in `seq 500 500 10001`; do
 
 	# Starting traffic generator
 	MRATE=$(echo "$r/1.31" | bc)
-	ssh leo@werner $HOME/vpp-bench/scripts/test_moongen-latency.sh $MRATE $EXP &
+	ssh leo@werner $HOME/vpp-bench/scripts/test_moongen-latency.sh $MRATE $EXP $PKTSIZE &
 
 
 	# Sleep for 15 seconds: Moongen takes 32s for a 20s experiment => 12s startup + 20s experiment
@@ -65,5 +67,5 @@ done
 cd /tmp/
 
 echo "Finishing experiment"
-cp histogram-mix-* ~/data/
+cp histogram-* ~/data/
 for i in *.dat; do cat $i | sort -nk2 | awk -f ~/vpp-bench/scripts/awk/parse.awk | awk 'NR%3 {printf("%s", $0); next}{print $0}' > ~/data/$i; done
