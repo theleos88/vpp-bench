@@ -51,6 +51,11 @@ for r in `seq 500 500 10001`; do
 	sudo mv /tmp/clock.dat	/tmp/clock-$EXP-$r.dat
 	scp leo@werner:$MOONDIR/histogram.csv /tmp/histogram-$EXP-$r.csv
 
-
-
 done
+
+## Finalize:
+cd /tmp/
+
+echo "Finishing experiment"
+cp histogram-mix-* ~/data/
+for i in *.dat; do cat $i | sort -nk2 | awk -f ~/vpp-bench/scripts/awk/parse.awk | awk 'NR%3 {printf("%s", $0); next}{print $0}' > ~/data/$i; done
