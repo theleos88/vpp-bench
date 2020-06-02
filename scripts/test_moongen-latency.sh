@@ -8,8 +8,10 @@ if [ -z "$1" ]; then
 	sudo ./build/MoonGen ~/vpp-bench/scripts/moongen_scripts/latency.lua 1 0 -r 10000
 elif [ -z "$2" ]; then
 	sudo ./build/MoonGen ~/vpp-bench/scripts/moongen_scripts/latency.lua 1 0 -r 10000
-else
+elif [ -z "$3" ]; then
 	sudo ./build/MoonGen ~/vpp-bench/scripts/moongen_scripts/latency.lua 1 0 -r $1 -m $2
+else
+	sudo ./build/MoonGen ~/vpp-bench/scripts/moongen_scripts/latency.lua 1 0 -r $1 -m $2 -s $3
 fi
 
 
