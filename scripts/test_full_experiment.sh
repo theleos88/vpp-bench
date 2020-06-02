@@ -14,17 +14,25 @@ source ~/vpp-bench/scripts/config.sh
 echo "*** STARTING EXPERIMENT + $EXP"
 
 for r in `seq 500 500 10001`; do
+
+	#Destroy all vpp instances and cpusets
 	sudo killall vpp_main
+	sudo cset set --destroy user
+	sudo cset set --destroy system
+
 	vpp_start-default.sh &
 
+	# After starting vpp, create a shielded version of cpus and move
+	sleep 1 && sudo cset shield --cpu 3,7 --kthread=on
+	sudo cset proc --move `pgrep vpp_main` user
 
 	if [ $EXP == "xc" ]; then
 		echo "Setup XC"
-		sleep 3 && vpp_setup-xconnect.sh
+		sleep 1 && vpp_setup-xconnect.sh
 
 	elif [ $EXP == "mix" ]; then
 		echo "Setup MIX"
-		sleep 3 && vpp_setup-mixed-interfaces.sh
+		sleep 1 && vpp_setup-mixed-interfaces.sh
 	else
 		echo "No such experiment!!"
 	fi
