@@ -3,6 +3,9 @@
 # This script simply recompiles all VPP
 
 cd $VPP_ROOT
+sudo chown -R "$USER" $VPP_ROOT
+sudo chgrp -R "$USER" $VPP_ROOT
+
 make wipe-release
 rm -rf build-root/.ccache/
 rm -rf build-root/install-vpp-native

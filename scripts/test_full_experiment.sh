@@ -1,18 +1,29 @@
 #!/bin/bash
 
+###INFO###
+#	$1 is the experiment xc or mix
+#	$2 is the packet size 
+
 EXP="xc"
+PKTSIZE=1020
+
 
 if [[ -z $1 ]]; then
 	EXP="xc"
 else
 	EXP="$1"
+
+	if [[ -z $2 ]]; then
+		PKTSIZE=$2
+	else
+		PKTSIZE=60
+	fi
 fi
 
 
 source ~/vpp-bench/scripts/config.sh
 
 echo "*** STARTING EXPERIMENT + $EXP"
-PKTSIZE=124
 
 
 for r in `seq 500 500 10001`; do
