@@ -1,7 +1,7 @@
 #!/bin/bash
 
 TABLE=$DATASETS/table.dat 	#If no table is provided, this is the default
-PREFIX=`cat $STARTUP_CONF | grep prefix | awk '{print $2}' | xargs echo -n`
+PREFIX=`cat $STARTUP_CONF | grep cli-listen | awk '{print $2}' | xargs echo -n`
 
 # Display usage
 usage (){
@@ -38,5 +38,5 @@ else
     done
 fi
 
-sudo $SFLAG $BINS/vppctl -p $PREFIX exec /tmp/commands$PPID
+sudo $SFLAG $BINS/vppctl -s $PREFIX exec /tmp/commands$PPID
 #vppctl -p vpp exec /tmp/commands$PPID
