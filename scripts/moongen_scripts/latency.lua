@@ -20,8 +20,8 @@ local DST_PORT		= 319
 local DST_MAC_LOOP	= "90:e2:ba:cb:f5:46"
 local DST_INTERFACE	= "90:e2:ba:f1:dc:4c"	-- This is specific to the testbed of werner-heisenberg
 
--- Experiment param
-EXP_TIME = 20
+-- Experiment param	-- Default is 20, bring back to this number
+EXP_TIME = 70
 
 local clib = ffi.load("ip6_handler/build/fill-ip6")
 

@@ -6,6 +6,8 @@
 
 EXP="xc"
 PKTSIZE=1020
+SEQNUM=30
+INTERSLEEP=2
 
 
 if [[ -z $1 ]]; then
@@ -58,9 +60,9 @@ for r in `seq 500 500 10001`; do
 
 	# Sleep for 15 seconds: Moongen takes 32s for a 20s experiment => 12s startup + 20s experiment
 	echo "Querying the data structure..."
-	sleep 15 && for i in `seq 1 10`; do
+	sleep 15 && for i in `seq 1 $SEQNUM`; do
 		sudo killall -s SIGUSR1 vpp_main
-		sleep 1
+		sleep $INTERSLEEP
 	done
 
 	# Sleep again and kill the file
