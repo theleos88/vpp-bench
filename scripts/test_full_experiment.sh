@@ -80,5 +80,6 @@ done
 cd /tmp/
 
 echo "Finishing experiment"
-cp histogram-* ~/data/
+mv histogram-* ~/data/
 for i in *.dat; do cat $i | sort -nk2 | awk -f ~/vpp-bench/scripts/awk/parse.awk | awk 'NR%3 {printf("%s", $0); next}{print $0}' > ~/data/$i; done
+sudo rm *.dat
