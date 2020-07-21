@@ -21,7 +21,7 @@ local DST_MAC_LOOP	= "90:e2:ba:cb:f5:46"
 local DST_INTERFACE	= "90:e2:ba:f1:dc:4c"	-- This is specific to the testbed of werner-heisenberg
 
 -- Experiment param	-- Default is 20, bring back to this number
-EXP_TIME = 70
+EXP_TIME = 50
 
 local clib = ffi.load("ip6_handler/build/fill-ip6")
 
@@ -67,10 +67,16 @@ function master(args)
 	device.waitForLinks()
 	rate = args.rate/3.0	--We have three transmit queues.
 
-	mg.startTask("loadSlaveL2",  txDev:getTxQueue(0), args.size, rate)
-	mg.startTask("loadSlaveIp", txDev:getTxQueue(2), args.size, rate)
+	if args.mix == "ip6" then
+		printf ("IP6 EXPERIMENT")
+		mg.startTask("loadSlaveIp6",  txDev:getTxQueue(0), args.size, rate)
+		mg.startTask("loadSlaveIp6",  txDev:getTxQueue(2), args.size, rate)
+	else
+		mg.startTask("loadSlaveL2",  txDev:getTxQueue(0), args.size, rate)
+		mg.startTask("loadSlaveIp", txDev:getTxQueue(2), args.size, rate)
+	end
 
-	if args.mix == "mix" then
+	if args.mix == "mix" or args.mix == "ip6" then
 		printf ("MIX EXPERIMENT")
 		mg.startTask("loadSlaveIp6",  txDev:getTxQueue(1), args.size, rate)
 	else
